@@ -1,0 +1,12 @@
+----------------# Events #----------------
+write_change   => 
+This will emit the changes to all the clients
+
+fetch_code     => 
+When a new client/user joins while there was some previous code it will be synced & displayed to the new user
+
+disconnect => 
+This will remove the user stored in the 'user_socket_map' object in the backend
+
+disconnected  => 
+This will emit the disconnected user to the room members and disconnect that user from that room
