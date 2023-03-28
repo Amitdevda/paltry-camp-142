@@ -1,6 +1,6 @@
 # Paltry-camp-142
 
-Construct week project NXM201 Batch Project starts on 28-01-2023 and completed on 01-01-2023
+Construct week project NXM201 Batch Project starts on 28-03-2023 and completed on 01-04-2023
 
 Project Code => Paltry-camp-142
 Website Name => 
