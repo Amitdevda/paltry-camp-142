@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        #box {
+            /* border: 1px solid red; */
+            width: 600px;
+            height: auto;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        #box>button {
+            cursor: pointer;
+        }
+
+        #chat {
+            border: 1px solid red;
+            width: 900px;
+            margin: auto;
+            /* height: 500px; */
+            display: flex;
+
+        }
+
+        #chat>div {
+            border: 1px solid green;
+        }
+
+        #chat>div:nth-child(1) {
+            width: 25%;
+        }
+
+        #chat>div:nth-child(2) {
+            width: 75%;
+        }
+
+        #chate #sendMsg {
+
+            width: 200px;
+            height: 20px;
+        }
+
+        #online>h3 {
+            color: green;
+        }
+
+        #online>h2 {
+            margin-bottom: -16px;
+
+        }
+
+        #leaveChat {
+            display: none;
+            margin: -21px 0px -9px 296px
+        }
+
+        #main {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chat app</h1>
+    <div id="box">
+        <input type="text" id="nameInput" placeholder="Enter Your name">
+        <button id="enterChat" onclick="enter()">Enter chat room</button>
+        <button id="leaveChat" onclick="leave()">Leave chat room</button>
+    </div>
+
+    <div id="main">
+        <div id="chat">
+            <div id="online">
+                <H2>ONLINE USERS</H2> <br>
+                <div id="all">
+                    <h3 id="y">You</h3>
+                </div>
+            </div>
+            <div id="you">
+                <input type="text" id="chate" placeholder="Chat">
+                <button id="sendMsg" onclick="sendMessag()">Send</button> <br>
+            </div>
+            <!-- <div id="other">
+
+        </div> -->
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+    integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
+    </script>
+<script>
+
+    let arr = []
+    let name = document.getElementById("nameInput").value;
+    const client = io("https://imran-sutar-app.onrender.com/", { transports: ["websocket"] })
+    
+
+    const enter = () => {
+        const name = document.getElementById("nameInput").value;
+        document.getElementById("leaveChat").style.display = "block"
+        document.getElementById("main").style.display = "block"
+        client.emit("join", name)
+        console.log(name)
+    }
+
+    client.on("put", (data) => {
+        arr = data
+        console.log(arr)
+    })
+
+    client.on("disc", async (data) => {
+        await data.forEach((elem) => {
+            console.log(data)
+        })
+        console.log(data)
+    })
+
+
+
+    client.on("online", async (data) => {
+        let name = document.getElementById("nameInput").value;
+        document.getElementById("all").innerHTML = null
+        let p = document.createElement("h3")
+        p.append("You")
+        document.getElementById("all").append(p)
+        let asd = 0;
+        if (name == data[data.length - 1]) {
+            alert(`Welcome to chat`)
+             data.forEach(async (elem) => {
+                if (elem == name) {
+                    asd++
+                } else {
+                    let p = document.createElement("h3")
+                    p.append(elem)
+                    await document.getElementById("all").append(p)
+                }
+            })
+        }
+        else {
+            alert(` "${data[data.length - 1]}" has joined the chat room`)
+            await data.forEach(async (elem) => {
+                if (elem == name) {
+                    asd++
+                } else {
+                    let p = document.createElement("h3")
+                    p.append(elem)
+                    await document.getElementById("all").append(p)
+                }
+            })
+        }
+    })
+
+    const sendMessag = () => {
+        let name = document.getElementById("nameInput").value;
+        // console.log(name)
+        const data = document.getElementById("chate").value;
+        client.emit("msg", { data: data, name: name })
+    }
+
+    client.on("msgd", (data) => {
+        let name = document.getElementById("nameInput").value;
+        console.log(data)
+        // if(name==data.name){
+        let p = document.createElement("p")
+        p.append(`${data.name} : ${data.data}`)
+        // p.append(data.data)
+        document.getElementById("you").append(p)
+        // }
+        // else{
+        //     let q= document.createElement("p")
+        //     q.append(data.data)
+        //     document.getElementById("other").append(q)
+        // }
+    })
+
+    const leave = () => {
+        let name = document.getElementById("nameInput").value;
+        client.emit("dis", name)
+    }
+
+
+</script>
