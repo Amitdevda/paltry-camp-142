@@ -1,5 +1,5 @@
 ----------------# Events #----------------
-write_change   => 
+write_html, write_css, write_js   => 
 This will emit the changes to all the clients
 
 fetch_code     => 

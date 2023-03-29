@@ -29,7 +29,30 @@ io.on("connection",(socket)=>{
 
     socket.on("join",({room_id, username})=>{
         console.log(room_id,username)
+
+        socket_map[socket.id] = username;
+
+        socket.join(room_id);
+
+         const clients = getAlluser(room_id);
+
+         socket.broadcast.to(room_id).emit("join",{username,clients});
     })
+
+    //event for writting code
+    socket.on("write_html", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_html",{code})
+
+    });
+    socket.on("write_css", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_css",{code})
+        
+    });
+    socket.on("write_js", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_js",{code})
+
+    });
+
 
     socket.on("disconnect",()=>{
         const rooms=[...socket.rooms]
