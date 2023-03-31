@@ -3,6 +3,8 @@ const {connection} = require("./config/db")
 const {user_route} = require("./route/user.route")
 const {authenticate} = require("./middleware/auth.middleware")
 const redis = require("redis")
+const path = require('path');
+
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const client_id="23ca205a4e951b3d0464"
@@ -49,9 +51,14 @@ app.get("/room",async(req,res)=>{
             Authorization: `Bearer ${access_token}`,
         }
     }).then((res)=>res.json())
+    
 
-    res.send("products")
-    console.log(userdetails);
+    console.log(userdetails.email);
+
+    const userEmail = await client.SET("userEmail",`${userdetails.email}`)
+    console.log(userEmail);
+   
+    res.sendFile(path.join(__dirname, '..', 'Amit', 'dexterlab.html'));
 })
 
 
