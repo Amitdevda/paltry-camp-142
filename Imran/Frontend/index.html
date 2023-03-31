@@ -74,7 +74,8 @@
     <h1>Chat app</h1>
     <div id="box">
         <input type="text" id="nameInput" placeholder="Enter Your name">
-        <button id="enterChat" onclick="enter()">Enter chat room</button>
+        <button id="enterChat" onclick="enter()">Enter chat room</button> <br>
+        <button id="entervdo" onclick="vdo()">Enter video room</button> <br>
         <button id="leaveChat" onclick="leave()">Leave chat room</button>
     </div>
 
@@ -90,9 +91,6 @@
                 <input type="text" id="chate" placeholder="Chat">
                 <button id="sendMsg" onclick="sendMessag()">Send</button> <br>
             </div>
-            <!-- <div id="other">
-
-        </div> -->
         </div>
     </div>
 
@@ -101,14 +99,12 @@
 </html>
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
     integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
-    </script>
-<script>
+</script>
 
+<script>
     let arr = []
     let name = document.getElementById("nameInput").value;
     const client = io("https://imran-sutar-app.onrender.com/", { transports: ["websocket"] })
-    
-
     const enter = () => {
         const name = document.getElementById("nameInput").value;
         document.getElementById("leaveChat").style.display = "block"
@@ -129,7 +125,11 @@
         console.log(data)
     })
 
-
+    const vdo = () => {
+        const name = document.getElementById("nameInput").value;
+        client.emit("videoo", name)
+        console.log("VDO")
+    }
 
     client.on("online", async (data) => {
         let name = document.getElementById("nameInput").value;
@@ -140,7 +140,7 @@
         let asd = 0;
         if (name == data[data.length - 1]) {
             alert(`Welcome to chat`)
-             data.forEach(async (elem) => {
+            data.forEach(async (elem) => {
                 if (elem == name) {
                     asd++
                 } else {
@@ -164,33 +164,23 @@
         }
     })
 
-    const sendMessag = () => {
-        let name = document.getElementById("nameInput").value;
-        // console.log(name)
-        const data = document.getElementById("chate").value;
-        client.emit("msg", { data: data, name: name })
-    }
+    // const sendMessag = () => {
+    //     let name = document.getElementById("nameInput").value;
+    //     const data = document.getElementById("chate").value;
+    //     client.emit("msg", { data: data, name: name })
+    // }
 
     client.on("msgd", (data) => {
         let name = document.getElementById("nameInput").value;
         console.log(data)
-        // if(name==data.name){
         let p = document.createElement("p")
         p.append(`${data.name} : ${data.data}`)
-        // p.append(data.data)
         document.getElementById("you").append(p)
-        // }
-        // else{
-        //     let q= document.createElement("p")
-        //     q.append(data.data)
-        //     document.getElementById("other").append(q)
-        // }
     })
 
     const leave = () => {
         let name = document.getElementById("nameInput").value;
         client.emit("dis", name)
     }
-
 
 </script>

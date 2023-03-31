@@ -1,47 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dexter Lab</title>
     <link rel="stylesheet" href="dexter.css">
-    <link rel="stylesheet" href="editor.css">
+    <link rel="stylesheet" href="chat.css">
     <script src="https://kit.fontawesome.com/b471923b50.js" crossorigin="anonymous"></script>
 </head>
+<style>
+    /* .chatbox{
+        border: 1px solid red;
+        height: 500px;
+        margin-bottom: 150px;
+        position: fixed;
+        top:100px;
+        right: 30px;
+    } */
+    .chatbox__header {
+        height: 50px;
+        width: 352px;
+        margin-bottom: 150px;
+        position: fixed;
+        top: 112px;
+        right: 65px;
+    }
+
+    .chatbox__footer {
+        margin-bottom: 150px;
+        position: fixed;
+        top: 150px;
+        right: 65px;
+        width: 352px;
+    }
+
+    .chatbox__support {
+        position: fixed;
+        top: 162px;
+        right: 65px;
+        width: 352px;
+        height: 336px;
+        border-radius: 0.1px;
+        overflow-y: scroll;
+    }
+
+</style>
+
 <body>
-<!------------------------ Navbar ----------------------------------->
-    <section id="nav">
-        <nav>
+    <!------------------------ Navbar ----------------------------------->
+    <section>
+        <nav id="nav">
             <div id="nav_logo">
-                <img src="" alt="" >
+                <img src="" alt="">
             </div>
             <div id="nav_container">
-              
                 <div class="dropdown">
-                    <div class="dropbtn">View <i class="fa-solid fa-caret-down"></i></div>
+                    <div class="dropbtn" id="ok">View <i class="fa-solid fa-caret-down"></i></div>
                     <div class="dropdown-content">
                         <a id="nav_layout-1">Layout 1</a>
                         <a id="nav_layout-2">Layout 2</a>
                         <a id="nav_layout-3">Layout 3</a>
+                        <a id="nav_layout-4">Layout 4</a>
                     </div>
                 </div>
-                <i class="fa-solid fa-bars" id="btn" style="font-size: 40px;margin-left: 50px;"></i>
+                <div><i class="fa-solid fa-bars" id="btn" style="font-size: 40px;margin-left: 50px;"></i></div>
             </div>
         </nav>
-    
+
         <div class="sidebar">
             <div class="logo-details">
                 <ul style="margin-top: 100px;width: 100%;">
                     <li>
                         <a href="#">
-                            <i class='bx bx-home'></i>
+                            <i class="fa-solid fa-house"></i>
                             <span class="links_name" id="currentRoom">Room ID</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class='bx bx-user'></i>
+                            <i class="fa-solid fa-user"></i>
                             <span class="links_name" id="currentUser">User</span>
                         </a>
                     </li>
@@ -52,26 +91,81 @@
             </ul>
         </div>
     </section>
-<!----------------------------------- Main body --------------------------------------->
-    <section class="cont" id="main_section">
-    <div class="left">
-        <label id="a"><i class="fa-brands fa-html5"></i>HTML</label>
-        <textarea id="htmlsec" onkeyup="run()"></textarea>
+    <!----------------------------------- Main body --------------------------------------->
+    <section id="content" class="x">
+        <div class="left">
+            <label id="a"><i class="fa-brands fa-html5"></i>HTML</label>
+            <textarea class="abc" id="htmlsec" onkeyup="run()"></textarea>
+            <hr>
+            <label id="b"><i class="fa-brands fa-css3"></i> CSS</label>
+            <textarea class="abc" id="csssec" onkeyup="run()"></textarea>
+            <hr>
+            <label id="c"><i class="fa-brands fa-js"></i> Javascrpit</label>
+            <textarea class="abc" id="jssec" onkeyup="run()"></textarea>
+            <hr>
+        </div>
+        <div class="right">
 
-        <label id="b"><i class="fa-brands fa-css3"></i> CSS</label>
-        <textarea id="csssec" onkeyup="run()"></textarea>
-        
-        <label id="c"><i class="fa-brands fa-js"></i> Javascrpit</label>
-        <textarea id="jssec" onkeyup="run()"></textarea>
-    
-    </div>
-    <div class="right">
+            <label><i class="fa-duotone fa-play"></i> Output</label>
+            <iframe id="output"></iframe>
 
-        <label ><i class="fa-duotone fa-play"></i> Output</label>
-      <iframe id="output"></iframe>    
-    
-    </div>
+        </div>
     </section>
+
+    <!-- ------------------------------Chat Section---------------------------------- -->
+
+    <section class="chating">
+        <div class="chatbox">
+            <div class="chatbox__support">
+                <div class="chatbox__header">
+                    <!-- Imraan Chatbox Header -->
+
+                </div>
+                <div class="chatbox__messages" id="append">
+                    <!-- chatbody -->
+
+                </div>
+                <div class="chatbox__footer">
+                    <!-- input -->
+
+                    <input type="text" placeholder="Write a message..." id="chate">
+                    <button class="send" onclick="sendMessag()">Send</button>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="chatbox__button">
+        <button onclick="khulja()">Chat here</button>
+    </div>
 </body>
+
 </html>
+
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+    integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
+    </script>
+
+<script>
+
+    const client = io("https://dexter-chat-deploy.onrender.com/", { transports: ["websocket"] })
+
+    const sendMessag = () => {
+        const data = document.getElementById("chate").value;
+        client.emit("msg", data)
+    }
+
+
+    client.on("msgd", (data) => {
+        // console.log(data)
+        let p = document.createElement("p")
+        p.style.color = "black"
+        p.append(`User : ${data}`)
+        document.getElementById("append").append(p)
+    })
+
+</script>
+
+
 <script src="dexter.js"></script>

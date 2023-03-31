@@ -127,7 +127,7 @@ button {
   #signIn-form{
    margin: auto;
    width: 350px;
-   height: 500px;
+   height: 350px;
    border-radius: 20px;
    transform: scale(1.2);
   /*  border: 1px solid black; */
@@ -194,51 +194,25 @@ button {
  <div id="heading"><img src="./HFC (2).png" alt=""></div>
  <p></p>
  <div id="signIn-form">
-  <h2 id="heading-two">SIGN IN</h2>
+  <h2 id="heading-two">LOGIN</h2>
   
-  <form >
+  <form action="../Amit/dexterlab.html">
    
    <label for="email">Email</label><br>
    <input type="email" name="email" id="Email" placeholder="Enter Your Email"><br><br>
-   <label for="Phone">Mobile</label><br>
-   <input type="number" name="Phone" id="Mobile" placeholder="Enter Your Number"><br><br>
    <label for="password">Password</label><br>
    <input type="password" name="password" id="pass" placeholder="Enter Your Password"><br><br>
-   <a href="./login.html"> 
-   <input type="submit" class="sub"value="Submit">
-  </a>
+    <br>
+   <input type="submit" class="sub"value="Login">
+  
    <br>
    <br>
    
   </form>
-
-<a href="https://github.com/login/oauth/authorize?client_id=23ca205a4e951b3d0464"><button id="secb"  class="sub">continue with github</button></a>
  </div>
 </body>
 </html>
 
 <script>
- let form=document.querySelector("form")
-
- let data=JSON.parse(localStorage.getItem("signing"))||[]
- form.addEventListener("submit",function(event){
-  event.preventDefault()
-  let obj={
-   name:form.Email.value,
-   mobile:form.Mobile.value,
-   password:form.pass.value
-  }
-  if(obj.name==""||obj.mobile==""||obj.password==""){
-   alert("please fill da")
-  }else{
-   data.push(obj)
-   localStorage.setItem("signing",JSON.stringify(data))
-   window.location.href="./login.html"
   
-  }
- 
- }) */
-
-
 </script>
-
