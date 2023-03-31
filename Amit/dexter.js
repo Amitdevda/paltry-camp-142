@@ -28,5 +28,55 @@ function menuBtnChange() {
     }
 }
 
+//=====================layout======================
+
+let layout1=document.getElementById('nav_layout-1')
+let layout2=document.getElementById('nav_layout-2')
+let layout3=document.getElementById('nav_layout-3')
+let layout4=document.getElementById('nav_layout-4')
+let sec=document.getElementById('content')
 
 
+
+layout1.addEventListener('click',()=>{
+    sec.classList.remove('a')
+    sec.classList.remove('b')
+    sec.classList.remove('x')
+    sec.classList.remove('d')
+    sec.classList.add('cont')
+})
+layout2.addEventListener('click',()=>{
+    sec.classList.remove('cont')
+    sec.classList.remove('b')
+    sec.classList.remove('x')
+    sec.classList.remove('d')
+    sec.classList.add('a')
+})
+
+layout3.addEventListener('click',()=>{
+    sec.classList.remove('a')
+    sec.classList.remove('cont')
+    sec.classList.remove('d')
+    sec.classList.remove('x')
+    sec.classList.add('b')
+})
+layout4.addEventListener('click',()=>{
+   sec.classList.remove('a')
+   sec.classList.remove('cont')
+   sec.classList.remove('b')
+   sec.classList.remove('x')
+   sec.classList.add('d')
+})
+
+//======================== chat function=============
+let open=0
+let box= document.querySelector('.chating')
+function khulja(){
+    if(open==0){
+     open=1;
+    box.style.display = 'block';
+}else{
+        box.style.display = 'none';
+        open=0;
+    }
+}
