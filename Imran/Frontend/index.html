@@ -99,13 +99,12 @@
 </html>
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
     integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
-    </script>
-<script>
+</script>
 
+<script>
     let arr = []
     let name = document.getElementById("nameInput").value;
     const client = io("https://imran-sutar-app.onrender.com/", { transports: ["websocket"] })
-
     const enter = () => {
         const name = document.getElementById("nameInput").value;
         document.getElementById("leaveChat").style.display = "block"
@@ -113,7 +112,6 @@
         client.emit("join", name)
         console.log(name)
     }
-
 
     client.on("put", (data) => {
         arr = data
@@ -166,12 +164,11 @@
         }
     })
 
-    const sendMessag = () => {
-        let name = document.getElementById("nameInput").value;
-        // console.log(name)
-        const data = document.getElementById("chate").value;
-        client.emit("msg", { data: data, name: name })
-    }
+    // const sendMessag = () => {
+    //     let name = document.getElementById("nameInput").value;
+    //     const data = document.getElementById("chate").value;
+    //     client.emit("msg", { data: data, name: name })
+    // }
 
     client.on("msgd", (data) => {
         let name = document.getElementById("nameInput").value;
