@@ -26,29 +26,41 @@ app.get("/welcome",(req,res)=>{
 
 app.use("/",user_route)
 
-/* app.use(authenticate)
- */
 app.get("/room",async(req,res)=>{
   const{code}=req.query
-  const response=await fetch("https://github.com/login/oauth/access_token",{
+  const accesstoken=await fetch("https://github.com/login/oauth/access_token",{
     method:"POST",
-    Headers:{
-    Accept:"application/json",
+    headers:{
+    Accept: "application/json",
     "content-type":"application/json"
     },
-    body:JSON.stringify({
-    client_id,
-    client_secret,
+    body: JSON.stringify({
+    client_id:client_id,
+    client_secret:client_secret,
     code
     })
-  })
-  const text = await response.text();
-const data = querystring.parse(text);
-const access_token = data.access_token;
-console.log("Access token:", access_token);
+  }).then((res)=>res.json())
+  const access_token=accesstoken.access_token
+//   console.log(code);
+  // connect room  here
+
+    const userdetails=await fetch("https://api.github.com/user",{
+        headers:{
+            Authorization: `Bearer ${access_token}`,
+        }
+    }).then((res)=>res.json())
+
     res.send("products")
+    console.log(userdetails);
 })
 
+
+
+app.use(authenticate)
+
+app.get("/manualloginroom",(req,res)=>{
+    res.send("manualloginroom")
+})
 
 app.get("/logout", async(req, res) => {
    const token = await client.GET("token")
@@ -78,3 +90,5 @@ app.listen(3000,async ()=>{
     }
     console.log("Port @ localhost:3000");
 })
+
+
