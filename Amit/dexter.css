@@ -18,20 +18,54 @@ color: rgb(101, 219, 255);
 #c{
     color: yellow;
 }
-
-
-.cont{
-    width: 100%;
-    height: 100vh;
-    /* padding: 20px; */
-    display: flex;
-}
-.left,.right{
+/* .left,.right{
     flex-basis: 50%; 
     padding: 2px;
+} */
+.left{
+  flex-basis: 40%;
+}
+.right{
+  flex-basis: 60%;
 }
 
-textarea{
+.x{
+  width: 100%;
+  height: 100vh;
+  padding: 2px;
+  display: flex;
+} 
+
+.x>div>textarea{
+  width: 100%;
+  height: 28%;
+  background: #1f1f1f;
+  color: #fff;
+  padding: 10px 20px;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+}
+
+.x>div>iframe{
+  width: 100%;
+  height: 93%;
+  background: #fff;
+  border: 0;
+  outline: 0;
+}
+
+
+/*==================== layout1=============== */
+
+#content.cont{
+    width: 100%;
+    height: 100vh;
+    padding: 2px;
+    display: flex;
+} 
+
+#content.cont>div>textarea{
     width: 100%;
     height: 28%;
     background: #1f1f1f;
@@ -42,13 +76,131 @@ textarea{
     font-size: 18px;
 }
 
-iframe{
+#content.cont>div>iframe{
     width: 100%;
-    height: 95%;
+    height: 93%;
     background: #fff;
     border: 0;
     outline: 0;
 }
+
+/* =========================layout2==================== */
+
+#content.a>.left{
+  display: flex;
+}
+#content.a>div>textarea{
+  width: 50%;
+  height: 40dvh;
+  background: #1f1f1f;
+  color: #fff;
+  margin-top: 3svh;
+  padding: 10px 20px;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+}
+#content.a>div>iframe{
+  width: 100%;
+  height: 50svh;
+  background: #fff;
+  border: 0;
+  outline: 0;
+}
+#content.a>div{
+  position: relative;
+}
+#content.a>div>#c{
+  position: absolute;
+  left:165vh;
+  background-color: #1f1f1f;
+}
+#content.a>div>#b{
+  position: absolute;
+  left:94vh;
+  background-color: #1f1f1f;
+  
+}
+#content.a>div>#a{
+  position: absolute;
+  left:25vh;
+  background-color: #1f1f1f;
+
+}
+
+/* ===========================layout3================= */
+
+#content.b{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#content.b>div>textarea{
+  width: 100%;
+  height: 30dvh;
+  background: #1f1f1f;
+  color: #fff;
+  padding: 10px 20px;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+}
+#content.b>div>iframe{
+  width: 100%;
+  height: 100dvh;
+  background: #fff;
+  border: 0;
+  outline: 0;
+}
+
+/* ===========================layout4================== */
+
+#content.d{
+  display: flex;
+  flex-direction:column-reverse;
+}
+#content.d>.left{
+  display: flex;;
+}
+#content.d>div>textarea{
+  width: 50%;
+  height: 40dvh;
+  background: #1f1f1f;
+  color: #fff;
+  margin-top: 3svh;
+  padding: 10px 20px;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+}
+#content.d>div>iframe{
+  width: 100%;
+  height: 50svh;
+  background: #fff;
+  border: 0;
+  outline: 0;
+}
+#content.d>div{
+  position: relative;
+}
+#content.d>div>#c{
+  position: absolute;
+  left:165vh;
+  background-color: #1f1f1f;
+}
+#content.d>div>#b{
+  position: absolute;
+  left:94vh;
+  background-color: #1f1f1f;
+  
+}
+#content.d>div>#a{
+  position: absolute;
+  left:25vh;
+  background-color: #1f1f1f;
+
+}
+
 
 label i{
      margin-right: 10px;
@@ -87,19 +239,24 @@ label{
   width: 0px;
 } */
 body {
-  background: var(--dark-color-c);
+  background: var(--dark-color-a);
 }
 
-nav {
+/* #nav{
+  border: 1px solid crimson;
+  display: flex;
+} */
+
+#nav {
   width: 100%;
   position: relative;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-around;
   padding: 8px 20px;
   background: #000000;
   z-index: 1000;
-  height: 60px;
+  height: 55px;
   border-bottom: 0.3px solid white;
   color: #dbdbdb;
 }
@@ -116,9 +273,9 @@ nav {
   width: 70%;
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-}
+} 
 
 #list {
   width: 30%;
@@ -136,26 +293,7 @@ nav {
   cursor: pointer;
 }
 
-/* ========\ code execute functionality buttons /========== */
-.code_execute_feature>span>i {
-  margin-right:5px ;
-}
 
-.code_execute_feature>span {
-  background: var(--dark-color-c);
-  padding: 8px 15px;
-  font-weight: 500;
-  margin-left: 30px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: ease-in-out 0.25s;
-}
-
-.code_execute_feature>span.execution_active{
-  background: var(--light-color-b);
-  color: var(--dark-color-c);
-  font-weight: 600;
-}
 /* ========\ view dropdown /========== */
 .dropbtn {
   background: var(--dark-color-c);
@@ -216,42 +354,6 @@ nav {
 }
 
 
-/* ========\ Search Bar /========== */
-.bx-menu {
-  cursor: pointer;
-}
-
-.nav_search-bar {
-  display: flex;
-}
-
-#searchBar {
-  width: 400px;
-  height: 28px;
-  border: 1px solid var(--light-color-a);
-  border-radius: 8px;
-  color: var(--light-color-a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  margin: 0 10px;
-  position: relative;
-}
-
-#searchBar i {
-  margin: 0 10px;
-}
-
-#controller {
-  margin: 0 0 0 30px;
-}
-
-#controller i {
-  color: var(--light-color-a);
-  margin: 0 5px;
-}
-
 /* ====================sidebar============================= */
 
 .sidebar {
@@ -259,8 +361,8 @@ nav {
   right: 0;
   top: 40px;
   height: 100%;
-  width: 250px;
-  transform: translateX(250px);
+  width: 50dvh;
+  transform: translateX(50dvh);
   background: #000;
   padding: 6px 14px;
   z-index: 99;
@@ -277,7 +379,7 @@ nav {
 }
 
 .sidebar .logo-details {
-  height: 60px;
+  height: 65px;
   display: flex;
   align-items: center;
   position: relative;
