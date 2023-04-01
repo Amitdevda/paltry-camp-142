@@ -4,11 +4,11 @@ const { Server } = require("socket.io")
 const fs = require("fs")
 const app = express()
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.send("Welcome")
 })
 
-app.get("/home",(req,res)=>{
+app.get("/home", (req, res) => {
     res.send("Home...")
 })
 
@@ -34,18 +34,33 @@ wss.on("connection", (socket) => {
         console.log(data)
         clientArr.push(data)
         name = data
-        console.log(clientArr,data)
+        console.log(clientArr, data)
         socket.broadcast.emit("online", clientArr)
         socket.emit("online", clientArr)
     })
-    
+
+
+    socket.on("html", (data) => {
+        // console.log(data)
+        socket.broadcast.emit("fst", data)
+        // socket.emit("pullhtml", data)
+    })
+
+    socket.on("ad", (data) => {
+        // console.log(data)
+        socket.broadcast.emit("a", data)
+        socket.emit("a", data)
+    })
+
+
     socket.on("dis", async (name) => {
         for (let i = 0; i < clientArr.length; i++) {
             if (clientArr[i] == name) {
-                await clientArr.splice( (i-1) , 1)
+                await clientArr.splice((i - 1), 1)
             }
         }
         socket.broadcast.emit("disc", clientArr)
         socket.emit("disc", clientArr)
     })
 })
+

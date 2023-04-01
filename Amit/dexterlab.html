@@ -839,7 +839,24 @@ body {
         overflow-y: scroll;
     }
 
-</style>
+  </style>
+  <style>
+    #sendjs{
+      width: 80px;
+      margin-left: 304px;
+      cursor: pointer;
+    }
+    #sendhtml{
+      width: 80px;
+      margin-left: 350px;
+      cursor: pointer;
+    }
+    #sendcss{
+      width: 80px;
+      cursor: pointer;
+      margin-left: 355px;
+    }
+  </style>
 
 <body>
     <!------------------------ Navbar ----------------------------------->
@@ -887,13 +904,13 @@ body {
     <!----------------------------------- Main body --------------------------------------->
     <section id="content" class="x">
         <div class="left">
-            <label id="a"><i class="fa-brands fa-html5"></i>HTML</label>
+            <label id="a"><i class="fa-brands fa-html5"></i>HTML <button id="sendhtml" onclick="sendhtml()" class="buttns">send</button> </label> 
             <textarea class="abc" id="htmlsec" onkeyup="run()"></textarea>
             <hr>
-            <label id="b"><i class="fa-brands fa-css3"></i> CSS</label>
+            <label id="b"><i class="fa-brands fa-css3"></i> CSS <button id="sendcss" class="buttns">send</button> </label>
             <textarea class="abc" id="csssec" onkeyup="run()"></textarea>
             <hr>
-            <label id="c"><i class="fa-brands fa-js"></i> Javascrpit</label>
+            <label id="c"><i class="fa-brands fa-js"></i> Javascrpit <button id="sendjs" class="buttns">send</button> </label>
             <textarea class="abc" id="jssec" onkeyup="run()"></textarea>
             <hr>
         </div>
@@ -904,7 +921,6 @@ body {
 
         </div>
     </section>
-
     <!-- ------------------------------Chat Section---------------------------------- -->
 
     <section class="chating">
@@ -932,6 +948,9 @@ body {
     <div class="chatbox__button">
         <button onclick="khulja()">Chat here</button>
     </div>
+
+
+		
 </body>
 
 </html>
@@ -942,17 +961,25 @@ body {
 
 <script>
 
+  
+  // const client = io("http://localhost:8000/", { transports: ["websocket"] })
     const client = io("https://dexter-chat-deploy.onrender.com/", { transports: ["websocket"] })
-
+    
     const sendMessag = () => {
-        const data = document.getElementById("chate").value;
-        client.emit("msg", data)
+      const data = document.getElementById("chate").value;
+      let name= localStorage.getItem("user")
+      client.emit("msg", {"data":data,"name":name})
     }
-
+    
+    client.on("fst",(data)=>{
+      window.location.reload
+      let field= document.getElementById("htmlsec")
+      // alert("Come")
+      console.log(data)
+      field.append(data)
+    })
 
     client.on("msgd", (data) => {
-        // console.log(data)
-        let name= localStorage.getItem("user")
         let d= document.createElement("div")
         d.style.border="1px solid red"
         d.style.marginTop="10px"
@@ -961,20 +988,26 @@ body {
         let p1 = document.createElement("p")
         p1.style.fontSize="10px"
         let p = document.createElement("p")
-        p.style.color = "black"
+        p.style.color = "black" 
         p1.style.color = "black"
         p1.style.marginBottom="-5px"
-        p1.append(name)
-        p.append(data)
-        console.log(name)
+        p1.append(data.name)
+        p.append(data.data)
         d.append(p1,p)
         document.getElementById("append").append(d)
     })
 
+    const sendhtml = () =>{
+      // alert("OK")
+      let data = document.getElementById("htmlsec").value;
+      client.emit("html",data)
+      // console.log(data)
+    }
+
 </script>
 
-
 <!-- <script src="dexter.js"></script> -->
+
 
 <script>
     function run(){
