@@ -1,7 +1,7 @@
 const express = require("express")
 const http = require("http")
 const { Server } = require("socket.io")
-
+const fs = require("fs")
 const app = express()
 
 app.get("/",(req,res)=>{
@@ -24,11 +24,10 @@ let name = ""
 wss.on("connection", (socket) => {
     // socket.emit("put",clientArr)
     console.log("client connected")
-
     socket.on("msg", (data) => {
         socket.broadcast.emit("msgd", data)
         socket.emit("msgd", data)
-        console.log(data)
+        // console.log(data)
     })
 
     socket.on("join", (data) => {
