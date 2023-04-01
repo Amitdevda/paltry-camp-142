@@ -4,6 +4,7 @@ const {user_route} = require("./route/user.route")
 const {authenticate} = require("./middleware/auth.middleware")
 const redis = require("redis")
 const path = require('path');
+const fs= require("fs")
 
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
@@ -13,8 +14,6 @@ const client_secret="a40831240ce5aeab012a248c9e5069152dcf2976"
 const client= redis.createClient();
 client.on('error', err => console.log('Redis Client Error', err));
 client.connect();
-
-
 
 const app = express()
 app.use(express.json())
@@ -53,12 +52,15 @@ app.get("/room",async(req,res)=>{
     }).then((res)=>res.json())
     
 
-    console.log(userdetails.email);
+    // console.log(userdetails.email);
+    console.log(userdetails.name);
+    fs.writeFileSync("name.txt",userdetails.name)
 
     const userEmail = await client.SET("userEmail",`${userdetails.email}`)
     console.log(userEmail);
    
     res.sendFile(path.join(__dirname, '..', 'Amit', 'dexterlab.html'));
+    // res.sendFile(path.join(__dirname + "../Amit/dexterlab.html"));
 })
 
 

@@ -203,7 +203,7 @@ button {
    <label for="password">Password</label><br>
    <input type="password" name="password" id="pass" placeholder="Enter Your Password"><br><br>
     <br>
-   <input type="submit" class="sub"value="Login">
+   <input type="submit" class="sub"value="Login" id="logn">
   
    <br>
    <br>
@@ -214,5 +214,11 @@ button {
 </html>
 
 <script>
-  
+  document.getElementById("logn").addEventListener("click",(res)=>{
+    // res.preventDefault()
+    // alert("OK")
+    let name = document.getElementById("Email").value;
+    localStorage.setItem("user",name)
+
+  })
 </script>
