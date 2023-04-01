@@ -23,7 +23,7 @@ function getAlluser(room_id){
     )
 }
 
-//connection making
+//connection making 
 io.on("connection",(socket)=>{
     console.log("socket connected", socket.id);
 

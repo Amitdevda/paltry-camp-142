@@ -850,33 +850,6 @@
     width: 352px;
   }
 
-  .chatbox__support {
-    position: fixed;
-    top: 162px;
-    right: 65px;
-    width: 352px;
-    height: 336px;
-    border-radius: 0.1px;
-    overflow-y: scroll;
-  }
-</style>
-
-<body>
-  <!------------------------ Navbar ----------------------------------->
-  <section>
-    <nav id="nav">
-      <div id="nav_logo">
-        <img src="" alt="">
-      </div>
-      <div id="nav_container">
-        <div class="dropdown">
-          <div class="dropbtn" id="ok">View <i class="fa-solid fa-caret-down"></i></div>
-          <div class="dropdown-content">
-            <a id="nav_layout-1">Layout 1</a>
-            <a id="nav_layout-2">Layout 2</a>
-            <a id="nav_layout-3">Layout 3</a>
-            <a id="nav_layout-4">Layout 4</a>
-          </div>
         </div>
         <div><i class="fa-solid fa-bars" id="btn" style="font-size: 40px;margin-left: 50px;"></i></div>
       </div>
@@ -922,10 +895,7 @@
       <label><i class="fa-duotone fa-play"></i> Output</label>
       <iframe id="output"></iframe>
 
-    </div>
-  </section>
 
-  <!-- ------------------------------Chat Section---------------------------------- -->
 
   <section class="chating">
     <div class="chatbox">
@@ -948,10 +918,7 @@
         </div>
       </div>
     </div>
-  </section>
-  <div class="chatbox__button">
-    <button onclick="khulja()">Chat here</button>
-  </div>
+
 </body>
 
 </html>
@@ -962,127 +929,18 @@
 
 <script>
 
-  const client = io("https://dexter-chat-deploy.onrender.com/", { transports: ["websocket"] })
 
-  const sendMessag = () => {
-    const data = document.getElementById("chate").value;
-    client.emit("msg", data)
-  }
-
-
-  client.on("msgd", (data) => {
-    // console.log(data)
-    let name = localStorage.getItem("user")
-    let d = document.createElement("div")
-    d.style.border = "1px solid red"
-    d.style.marginTop = "10px"
-    d.style.padding = "5px"
-    d.style.borderRadius = "8px"
-    let p1 = document.createElement("p")
-    p1.style.fontSize = "10px"
-    let p = document.createElement("p")
-    p.style.color = "black"
-    p1.style.color = "black"
-    p1.style.marginBottom = "-5px"
-    p1.append(name)
-    p.append(data)
-    console.log(name)
-    d.append(p1, p)
-    document.getElementById("append").append(d)
-  })
-
-
-  //--------------------Ayush Code write js---------------------
-
-
-  //event for writting code
-  // socket.on("write_html", ({room_id, code }) => {
-  //    socket.broadcast.to(room_id).emit("write_html",{code})
-
-  // });
-  // socket.on("write_css", ({room_id, code }) => {
-  //     socket.broadcast.to(room_id).emit("write_css",{code})
-
-  // });
-  // socket.on("write_js", ({room_id, code }) => {
-  //     socket.broadcast.to(room_id).emit("write_js",{code})
-
-  // });
-
-  const updateHtml = (code) => {
-    const iframe = document.getElementById("output");
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDoc.getElementsByTagName("html")[0].innerHTML = code;
-  }
-
-  const updateCss = (code) => {
-    const iframe = document.getElementById("output");
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    const style = iframeDoc.createElement("style");
-    style.type = "text/css";
-    style.innerHTML = code;
-    iframeDoc.getElementsByTagName("head")[0].appendChild(style);
-  }
-
-  const updateJs = (code) => {
-    const iframe = document.getElementById("output");
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    const script = iframeDoc.createElement("script");
-    script.type = "text/javascript";
-    script.innerHTML = code;
-    iframeDoc.getElementsByTagName("head")[0].appendChild(script);
-  }
-
-  const syncOutput = (code) => {
-  const iframe = document.getElementById("output");
-  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-  iframeDoc.open();
-  iframeDoc.write(code);
-  iframeDoc.close();
-}
-
-
-  client.on("update_html", ({ code }) => {
-    document.getElementById("htmlsec").value = code;
-  updateHtml(code);
-  });
-
-  client.on("update_css", ({ code }) => {
-    document.getElementById("csssec").value = code;
-    updateCss(code);
-  });
-
-  client.on("update_js", ({ code }) => {
-    document.getElementById("jssec").value = code;
-    updateJs(code);
-  });
-
-  client.on("sync_code", ({ code }) => {
-    document.getElementById("output").value=code
-  syncOutput(code);
-});
-
-
-  // taking the html content here
-  
-  const coding = () => {
-    let h_code = document.getElementById("htmlsec").value
-    let c_code = document.getElementById("csssec").value
-    let j_code = document.getElementById("jssec").value
-    let output_result = document.getElementById("output").contentWindow.document.documentElement.outerHTML;
-
-    client.emit("write_html", { room_id, code: h_code });
-    client.emit("write_css", { room_id, code: c_code });
-    client.emit("write_js", { room_id, code: j_code });
-    client.emit("sync_code", { room_id, code: output_result })
-
-  }
-
+    const sendhtml = () =>{
+      // alert("OK")
+      let data = document.getElementById("htmlsec").value;
+      client.emit("html",data)
+      // console.log(data)
+    }
 
 </script>
 
-
 <!-- <script src="dexter.js"></script> -->
+
 
 <script>
   function run() {
