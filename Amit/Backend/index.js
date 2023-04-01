@@ -55,6 +55,25 @@ wss.on("connection", (socket) => {
         socket.emit("online", clientArr)
     })
 
+    //event for writting code
+    socket.on("write_html", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_html",{code})
+
+    });
+    socket.on("write_css", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_css",{code})
+        
+    });
+    socket.on("write_js", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_js",{code})
+
+    });
+
+    socket.on("sync_code", (socketId, code) => {
+        io.to(socketId).emit("code_change", { code });
+    });
+
+
     socket.on("dis", async (name) => {
         for (let i = 0; i < clientArr.length; i++) {
             if (clientArr[i] == name) {
