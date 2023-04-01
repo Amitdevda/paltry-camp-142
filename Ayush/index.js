@@ -53,6 +53,10 @@ io.on("connection",(socket)=>{
 
     });
 
+    socket.on("sync_code", (socketId, code) => {
+        io.to(socketId).emit("code_change", { code });
+    });
+
 
     socket.on("disconnect",()=>{
         const rooms=[...socket.rooms]
