@@ -21,6 +21,22 @@ const wss = new Server(httpServer)
 let clientArr = []
 let name = ""
 
+
+//check for the users and scoket
+// const socket_map={}
+// function getAlluser(room_id){
+//     return Array.from(io.sockets.adapter.rooms.get(room_id)||[]).map(
+//         (socket_id)=>{
+//             return{
+//                 socket_id,
+//                 username: socket_map[socket_id],
+//             }
+//         }
+//     )
+// }
+
+
+
 wss.on("connection", (socket) => {
     // socket.emit("put",clientArr)
     console.log("client connected")
@@ -38,20 +54,6 @@ wss.on("connection", (socket) => {
         socket.broadcast.emit("online", clientArr)
         socket.emit("online", clientArr)
     })
-
-
-    socket.on("html", (data) => {
-        // console.log(data)
-        socket.broadcast.emit("fst", data)
-        // socket.emit("pullhtml", data)
-    })
-
-    socket.on("ad", (data) => {
-        // console.log(data)
-        socket.broadcast.emit("a", data)
-        socket.emit("a", data)
-    })
-
 
     socket.on("dis", async (name) => {
         for (let i = 0; i < clientArr.length; i++) {
