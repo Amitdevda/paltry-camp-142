@@ -1004,6 +1004,78 @@ body {
       // console.log(data)
     }
 
+    //--------------------Ayush Code write js---------------------
+
+
+  //event for writting code
+  // socket.on("write_html", ({room_id, code }) => {
+  //    socket.broadcast.to(room_id).emit("write_html",{code})
+
+  // });
+  // socket.on("write_css", ({room_id, code }) => {
+  //     socket.broadcast.to(room_id).emit("write_css",{code})
+
+  // });
+  // socket.on("write_js", ({room_id, code }) => {
+  //     socket.broadcast.to(room_id).emit("write_js",{code})
+
+  // });
+
+  const updateHtml = (code) => {
+    const iframe = document.getElementById("output");
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDoc.getElementsByTagName("html")[0].innerHTML = code;
+  }
+
+  const updateCss = (code) => {
+    const iframe = document.getElementById("output");
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const style = iframeDoc.createElement("style");
+    style.type = "text/css";
+    style.innerHTML = code;
+    iframeDoc.getElementsByTagName("head")[0].appendChild(style);
+  }
+
+  const updateJs = (code) => {
+    const iframe = document.getElementById("output");
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const script = iframeDoc.createElement("script");
+    script.type = "text/javascript";
+    script.innerHTML = code;
+    iframeDoc.getElementsByTagName("head")[0].appendChild(script);
+  }
+
+
+  client.on("update_html", ({ code }) => {
+    document.getElementById("htmlsec").value = code;
+  updateHtml(code);
+  });
+
+  client.on("update_css", ({ code }) => {
+    document.getElementById("csssec").value = code;
+    updateCss(code);
+  });
+
+  client.on("update_js", ({ code }) => {
+    document.getElementById("jssec").value = code;
+    updateJs(code);
+  });
+
+
+  // taking the html content here
+  const coding = () => {
+    let h_code = document.getElementById("htmlsec").value
+    let c_code = document.getElementById("csssec").value
+    let j_code = document.getElementById("jssec").value
+    let output_result=document.getElementById("output").value
+
+    client.emit("write_html", { room_id, code: h_code });
+    client.emit("write_css", { room_id, code: c_code });
+    client.emit("write_js", { room_id, code: j_code });
+    client.emit("sync_code", { room_id, code: output_result })
+
+  }
+
 </script>
 
 <!-- <script src="dexter.js"></script> -->
