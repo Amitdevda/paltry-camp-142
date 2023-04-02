@@ -21,6 +21,22 @@ const wss = new Server(httpServer)
 let clientArr = []
 let name = ""
 
+
+//check for the users and scoket
+// const socket_map={}
+// function getAlluser(room_id){
+//     return Array.from(io.sockets.adapter.rooms.get(room_id)||[]).map(
+//         (socket_id)=>{
+//             return{
+//                 socket_id,
+//                 username: socket_map[socket_id],
+//             }
+//         }
+//     )
+// }
+
+
+
 wss.on("connection", (socket) => {
     // socket.emit("put",clientArr)
     console.log("client connected")
@@ -39,12 +55,18 @@ wss.on("connection", (socket) => {
         socket.emit("online", clientArr)
     })
 
+    //event for writting code
+    socket.on("write_html", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_html",{code})
 
-    socket.on("html", (data) => {
-        // console.log(data)
-        socket.broadcast.emit("fst", data)
-        // socket.emit("pullhtml", data)
-    })
+    });
+    socket.on("write_css", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_css",{code})
+        
+    });
+    socket.on("write_js", ({room_id, code }) => {
+        socket.broadcast.to(room_id).emit("write_js",{code})
+
 
     socket.on("css", (data) => {
         // console.log(data)
@@ -62,6 +84,12 @@ wss.on("connection", (socket) => {
         socket.broadcast.emit("a", data)
         socket.emit("a", data)
     })
+    });
+
+    socket.on("sync_code", (socketId, code) => {
+        io.to(socketId).emit("code_change", { code });
+    });
+
 
 
     socket.on("dis", async (name) => {
