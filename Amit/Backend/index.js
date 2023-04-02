@@ -46,6 +46,17 @@ wss.on("connection", (socket) => {
         // socket.emit("pullhtml", data)
     })
 
+    socket.on("css", (data) => {
+        // console.log(data)
+        socket.broadcast.emit("fstcss", data)
+    })
+
+    socket.on("js", (data) => {
+        // console.log(data)
+        socket.broadcast.emit("fstjs", data)
+        // socket.emit("pullhtml", data)
+    })
+
     socket.on("ad", (data) => {
         // console.log(data)
         socket.broadcast.emit("a", data)
