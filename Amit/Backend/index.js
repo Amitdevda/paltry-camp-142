@@ -67,11 +67,29 @@ wss.on("connection", (socket) => {
     socket.on("write_js", ({room_id, code }) => {
         socket.broadcast.to(room_id).emit("write_js",{code})
 
+
+    socket.on("css", (data) => {
+        // console.log(data)
+        socket.broadcast.emit("fstcss", data)
+    })
+
+    socket.on("js", (data) => {
+        // console.log(data)
+        socket.broadcast.emit("fstjs", data)
+        // socket.emit("pullhtml", data)
+    })
+
+    socket.on("ad", (data) => {
+        // console.log(data)
+        socket.broadcast.emit("a", data)
+        socket.emit("a", data)
+    })
     });
 
     socket.on("sync_code", (socketId, code) => {
         io.to(socketId).emit("code_change", { code });
     });
+
 
 
     socket.on("dis", async (name) => {
