@@ -21,7 +21,7 @@ user_route.post("/signup",async (req,res)=>{
             }else{
                 const user = new UserModel({name, email, pass:secure_pass})
                 await user.save()
-                res.send("Signup successfull")
+                res.json({"msg":"signup successfull"})
             }
         })
     } catch (error) {
@@ -36,22 +36,22 @@ user_route.post("/login", async (req,res)=>{
     try {
         const user = await UserModel.findOne({email})
         if(!user){
-            res.send("Please signup first")
+            res.json({"msg":"Please signup first"})
         }else{
             const hash_pass = user?.pass;//user?.pass;----------if the user is there next go to the further process othervicw not...
             bcrypt.compare(pass, hash_pass,async (err, result)=>{
             if(result){
-                const token = jwt.sign({userID:user._id, role : user.role},"N_token", {expiresIn: '1h'});
-                const response = await client.SETEX("token" ,120 ,token)
-                res.send({msg:"Login successfully"})
+                const token = jwt.sign({userID:user._id, role : user.role},"N_token", {expiresIn: '3h'});
+                const response = await client.SETEX("token" ,320 ,token)
+                res.json({"msg":"Login successfully"})
             }else{
                 console.log(err);
-                res.send("Something went wrong, login failed")
+               res.json({"msg":"Wrong Credentials"})
             }
         })
         }
     } catch (error) {
-        res.send("Error in login the user")
+       res.json({"msg":"Login failed Error in try"})
         console.log(error);
     }
 })
