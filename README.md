@@ -5,7 +5,7 @@ Construct week project NXM201 Batch Project starts on 28-03-2023 and completed o
 Project Code => Paltry-camp-142 <br>
 Website Name => Dexter
 
-Deployed lin => 
+Deployed link => 
 
 Project type => Real-Time-Text-Editor
 
