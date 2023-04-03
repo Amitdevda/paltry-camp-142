@@ -28,10 +28,6 @@ Create a new project or join an existing project.
 Start coding with your team in real-time!
 
 
-<img src="C:\Users\Admin\Desktop\dexterlab.html.png" alt="A description of the image" />
-
-
-
 Features:
 
 Real-time collaboration: Our app allows multiple users to collaborate and code together in real-time. You can see the changes made by other team members instantly.
