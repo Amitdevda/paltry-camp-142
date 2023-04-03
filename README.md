@@ -28,7 +28,7 @@ Create a new project or join an existing project.
 Start coding with your team in real-time!
 
 
-<img src=""C:\Users\Admin\Desktop\dexterlab.html.png"" alt="A description of the image" />
+<img src="C:\Users\Admin\Desktop\dexterlab.html.png" alt="A description of the image" />
 
 
 
