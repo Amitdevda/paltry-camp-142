@@ -189,19 +189,23 @@ select {
       function piche(){
         location.href= 'dexter(single).html'
       }
-    
-      const aage=()=>{
+     
+        async function aage() {
         const name = document.getElementById("username").value;
         const roomid = document.getElementById("editoID").value;
-        if(name=="" || roomid==""){
-            alert("Please fill data")
-        }
-        else{
             localStorage.setItem("name",name)
             localStorage.setItem("roomid",roomid)
-        location.href= 'dexterlab.html'
-        }  
+  try {
+    const response = await fetch("http://localhost:2020/lab");
+    if (response.ok) {
+      location.href = "dexterlab.html"
+    } else {
+      console.error(`Error: ${response.status} - ${response.statusText}`);
     }
-
+  } catch (err) {
+    console.error(err);
+  }
+}
+  
  </script>
 </html>

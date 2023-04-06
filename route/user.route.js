@@ -3,6 +3,7 @@ const {UserModel} = require("../model/user.model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const redis = require("redis")
+require('dotenv').config()
 
 const client= redis.createClient();
 client.on('error', err => console.log('Redis Client Error', err));
@@ -14,7 +15,7 @@ const user_route = express.Router()
 user_route.post("/signup",async (req,res)=>{
     const {name,email,pass} = req.body
     try {
-        bcrypt.hash(pass,4 ,async (err,secure_pass)=>{
+        bcrypt.hash(pass,4,async (err,secure_pass)=>{
             if(err){
                 console.log(err);
                 res.send("something went wrong")
@@ -42,7 +43,7 @@ user_route.post("/login", async (req,res)=>{
             bcrypt.compare(pass, hash_pass,async (err, result)=>{
             if(result){
                 const token = jwt.sign({userID:user._id, role : user.role},"N_token", {expiresIn: '3h'});
-                const response = await client.SETEX("token" ,320 ,token)
+                await client.SETEX("token" ,320 ,token)
                 res.json({"msg":"Login successfully"})
             }else{
                 console.log(err);
@@ -55,6 +56,35 @@ user_route.post("/login", async (req,res)=>{
         console.log(error);
     }
 })
+
+user_route.get("/logout", (req, res) => {
+  client.get("token", (err, authToken) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    } else if (!authToken) {
+      res.status(401).send("Unauthorized");
+    } else {
+      client.set("logout", authToken, (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Internal Server Error");
+        } else {
+          client.del("token", (err) => {
+            if (err) {
+              console.error(err);
+              res.status(500).send("Internal Server Error");
+            } else {
+              res.status(200).send("Logged out successfully");
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
+
 
 /* user_route.get("/getnewtoken",(req,res)=>{
     const refresh_token = req.headers.authorization?.split(" ")[1]

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
+require('dotenv').config()
 
-const connection = mongoose.connect("mongodb://imrans:imrans@ac-a69msxr-shard-00-00.tbycsjm.mongodb.net:27017,ac-a69msxr-shard-00-01.tbycsjm.mongodb.net:27017,ac-a69msxr-shard-00-02.tbycsjm.mongodb.net:27017/dextorite?ssl=true&replicaSet=atlas-10faq7-shard-0&authSource=admin&retryWrites=true&w=majority")
+const connection = mongoose.connect(`mongodb+srv://${process.env.mongo_uid}:${process.env.mongo_pass}@cluster0.0sroy.mongodb.net/dexterDB?retryWrites=true&w=majority`)
 
 module.exports = {connection}

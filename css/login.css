@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     padding: 0;
     margin: 0;
-    background-color: #F2F6F8;  
+    background-color: grey;  
 }
 
 .container {
@@ -19,6 +19,7 @@ body {
     height: 100%;
     background-color: white;
     position: relative;
+    
 }
 
 .container__rightPart {
@@ -101,74 +102,6 @@ body {
     background-color: #03A9F4;
 }
 
-.container__loginCard h3 {
-    padding-left: 25px;
-    padding-top: 10px;
-    color: #4C4C4C;
-}
-
-.container__loginCard > input {
-    height: 30px;
-    display: block;
-    width: 85%;
-    margin: 15px auto;
-    font-size: 14px;
-    padding: 5px 10px;
-    border: 1px solid #c6d2d9;
-    border-radius: 2px;
-}
-
-
-.container__loginCard input:placeholder-shown {
-    color: #a2a2a2;
-    font-size: 14px;
-}
-
-.container__loginCard a {
-    text-decoration: none;
-    margin-left: 40px;
-    text-align: left;
-    font-size: 14px;
-    color: #03A9F4;
-}
-
-.container__loginCard a:hover {
-    text-decoration: underline;
-}
-
-.loginBtn-link{
-    width: 100%;
-    margin: 15px auto;    
-}
-
-.loginCard__loginBtn {
-    margin-left: -22px;
-    width: 92%;
-    text-align: center;
-    height: 40px;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 2px;
-    background-color: #03A9F4;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
-    transition: 0.4s;
-}
-
-.loginCard__loginBtn:hover {
-    background-color: #038FCE;
-}
-
-/* .loginCard__loginBtn:disabled {
-    background-color: #7bc4e6;
-    cursor: not-allowed;
-} */
-
- /* .loginCard__loginBtn:enabled {
-    cursor: pointer;
-}  */
-
 .loginCard__line {
     display: flex;
     height: 50px;
@@ -193,7 +126,7 @@ body {
     width: 90%;
     margin-left: 25px;
     background-color: white;
-    border: 1px solid #C6D2D9;
+    border: 1px solid #c6d2d9;
     padding-top: -10px;
     text-align: center;
     transition: 0.4s;
@@ -204,7 +137,8 @@ body {
 }
 
 .loginCard__googleBtn:hover {
-    background-color: #e4eaee;
+    background-color: #219ce4;
+    color: #fff;
 }
 
 .loginCard__googleBtn span {
@@ -293,16 +227,58 @@ body {
     .container__rightPart h2 {
         font-size: 28px;
     }
-    .container__loginCard {
+    /* .container__loginCard {
         margin-left: 100px;
-    }
+    } */
     .container__navbar img{
         margin-left: 190px;
     }
-    .container__loginCard p {
+    /* .container__loginCard p {
         padding-left: -110px;
-    }
+    } */
     .container__navbar > div > p {
         margin-right: 100px;
     }
 } 
+.container__loginCard{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin-top: 5rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+}
+
+input, label{
+    margin: 5px;
+    font-size: 15px;
+
+}
+input{
+    height: 30px;
+    border-radius: 10px;
+    border-color: gray;
+}
+input:hover{
+    background-color:#219de460 ;
+}
+#fbtn{
+    display: flex;
+    flex-direction: row-reverse;
+}
+#logo{
+    width: 250px;
+    margin-top: -60px;
+    margin-left: -30px;
+}
+button{
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    border-color: gray;
+}
+.container__loginCard>h2{
+    text-align: center;
+    text-decoration: underline;
+}

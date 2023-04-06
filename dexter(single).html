@@ -378,13 +378,17 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+#log{
+  width: 150px;
+  margin-left: -15px;
+}
   </style>
 <body>
     <!------------------------ Navbar ----------------------------------->
     <section>
         <nav id="nav">
             <div id="nav_logo">
-                <img src="" alt="">
+                <img id="log" src="./images/dexter-2-logo-png-transparent.png" alt="">
             </div>
             <div id="nav_container">
                 <div class="dropdown">
@@ -398,9 +402,9 @@ body {
                 </div>
                 <div>
                   <button class="logbtn" onclick="down()">Download</button>
-                  <button class="logbtn">Logout</button>
-                  <a style="text-decoration: none;" id="col" href="createroom.html" class="logbtn">Create Room</a>
-                </div>
+                  <button class="logbtn" onclick="bye()">Logout</button>
+                  <button id="col" class="logbtn" onclick="chle()">Create Room</button>
+                  </div>
             </div>
         </nav>
 
@@ -494,6 +498,38 @@ if(!htmlcode && !csscode && !jscode){
   a.download = 'myFile.txt';
   a.click();
 }
+}
+
+
+async function chle() {
+  try {
+    const response = await fetch("http://localhost:2020/c_room");
+    if (response.ok) {
+      location.href = "createroom.html"
+    } else {
+      console.error(`Error: ${response.status} - ${response.statusText}`);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function bye() {
+  try {
+    const response = await fetch("http://localhost:2020/logout");
+    if (response.ok) {
+      const leaveRoom = confirm("Come Back Sooon?");
+ 
+    if(leaveRoom){
+        window.location.href = "./index.html";
+
+    }
+    } else {
+      console.error(`Error: ${response.status} - ${response.statusText}`);
+    }
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 </script>

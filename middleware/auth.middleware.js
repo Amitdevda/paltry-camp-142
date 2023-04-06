@@ -34,7 +34,7 @@ const authenticate = async(req,res,next)=>{
                 })
 
             } else {
-                res.send("This route has been producted, Please login first, You must need token")
+                res.send("This route has been producted, Please login first")
             }
         }
     }

@@ -21,17 +21,19 @@ body{
        display: flex;
        justify-content: space-between;
        margin: 50px 90px;
+       
    }
    .Sign_Up_Login{
-       text-decoration: none;
        color:  #03a9f4;
        background-color: transparent;
        font-family: 'Roboto', sans-serif;
-       font-size: 14px;
+       font-size: 20px;
        position: relative;
+       /* border: 1px solid #333; */
    }
    .Sign_Up_GetStarted{
        text-align: center;
+       margin-top: -20px;
        /* border: 1px solid black; */
    }
    .Sign_Up_GetStarted_Get
@@ -64,7 +66,7 @@ body{
        align-content: center;
        margin: auto;
        padding: 30px;
-       box-shadow: 0px 0px 20px rgba(0,0,0,.1);
+       box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
        border-radius: 2px;
    }
    .Sign_Up_Form_SignUp
@@ -138,7 +140,7 @@ body{
       color: #03a9f4;
       font-family: 'Roboto', sans-serif;
   }
-  .Sign_UP_Create_Button{
+  .Sign_UP_Create_Button,.loginCard__googleBtn{
       color: #FFFFFF;
       font-size: 14px;
       font-family: 'Roboto',sans-serif;
@@ -170,51 +172,21 @@ body{
     background-color: #999;
     font-family: 'Roboto', sans-serif;
 }
-  /* .Sign_Up_OR{
-position: relative;
-z-index: 10; */
-  
-.Sign_Up_Google_Button{
-    width: 95%;
-    height: 40px;
-    color:rgb(102,102,102);
-    border: 1px solid rgb(198,210,217);
-    font-size: 14px;
-    font-family: 'Roboto',sans-serif;
-    background-color:rgb(255,255,255);
-    border-radius: 2px;
-    text-decoration: none;    
 
+.loginCard__googleBtn:hover {
+    background-color: gray;
 }
-.Sign_Up_Google_Button :hover{
-    background-color: #f2f6f8;
-    /* border: 1px solid black; */
-    font-family: 'Roboto', sans-serif;
-}
-  .Sign_Up_Google {
-      width: 100%;
-      color:rgb(102,102,102);
-      font-size: 14px;
-      font-family: 'Roboto',sans-serif;
-      background-color:rgb(255,255,255);
-      border-radius: 2px;
-      padding: 10px;      
-      text-decoration: none;
-    }
-    .Sign_Up_Google img{
-        width: 10%;
-        height: 20px;
-        margin-top: 5px;
-        margin-left: 35px;
-        font-family: 'Roboto', sans-serif;
-    }
-.Sign_Up_Google_Continue{
-    width: 90%;
-   margin: auto;
-   font-family: 'Roboto', sans-serif;
+.Sign_UP_Create_Button:hover {
+    background-color: gray;
 }
 
+.loginCard__googleBtn span {
+    margin-left: 30px;
+}
 
+.loginCard__googleBtn img {
+    margin-left: -40px;
+}
 .Sign_Up_Privacy{
     text-align: center;
     width: 25%;
@@ -322,4 +294,47 @@ z-index: 10; */
         margin-top: 5px;
         margin-left: 0px;
     }
+}
+#logo{
+    width: 200px;
+    margin-top: -70px;
+    margin-left: -90px;
+}
+
+.container__loginCard{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin-top: 5rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+}
+
+input, label{
+    margin: 5px;
+    font-size: 15px;
+
+}
+input{
+    height: 30px;
+    border-radius: 10px;
+    border-color: gray;
+}
+input:hover{
+    background-color:#219de460 ;
+}
+#fbtn{
+    display: flex;
+    flex-direction: row-reverse;
+}
+button{
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    border-color: gray;
+}
+.container__loginCard>h2{
+    text-align: center;
+    text-decoration: underline;
 }

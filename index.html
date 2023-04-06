@@ -1,131 +1,155 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>
-        Sign Up
-    </title>
-    <link rel="stylesheet" href="./css/signup.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href= "./css/login.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
-
+<script src="https://kit.fontawesome.com/b471923b50.js" crossorigin="anonymous"></script>
 <body>
-    <div class="Sign_Up">
-    <div class="Sign_Up_Contianer">
-        <!-- Navbar -->
-        <div class="Sign_Up_Navbar">
-            <a href="./index.html"><img width="100px" src="./images/dexter-2-logo-png-transparent.png" alt="logo"></a>
-            <a href="./login.html" class="Sign_Up_Login">Log In</a>
-        </div>
-        <!-- Get Sarted -->
-        <div class="Sign_Up_GetStarted">
-            <p class="Sign_Up_GetStarted_Get"> Get started with Dextor</p>
-            <p class="Sign_Up_GetStarted_Create"> Create a free account to start texting and supercharge your
-                productivity</p>
-            <p class="SIgn_Up_GetStarted_Credit"> No credit card required · Unsubscribe at any time</p>
-        </div>
-        <!--Sign Up Form -->
-        <div class="Sign_Up_Form">
-            <label class="Sign_Up_Form_SignUp"> Sign Up</label>
-            <input type="text" name="name" id="name" placeholder="Enter name" required/>
-            <input type="text" name="email" id="email" placeholder="Enter email" required/>
-            <input type="password" name="password" id="password" placeholder="Choose password" required/>
-            <!-- terms check box -->
-            <label class="Sign_Up_Terms">
-                <input type="Checkbox" class="Sign_Up_Checkbox" id="Sign_Up_Checkbox" required checked>
-                I agree to the
-                <span class="Sign_Up_Checkmark"></span>
-                <a href="#">Terms of Use</a>
-            </label>
-            <!-- create button -->
-            <a href="#"><button  class="Sign_UP_Create_Button" id="signup"> CREATE FREE ACCOUNT </button></a>
-            <h4 class="Sign_Up_error Sign_Up_error_msg" id="Sign_Up_error"> You must accept the terms of service </h4>
-            <!-- <p class="Sign_Up_OR"><img
-                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0HBwcHBxAQBwcHBw0HBwcHBw8ICQcNIBEWIiARFR8kHUAjIiYxHRUfITM5MTU3OjouIzQ3QDM4TjQyMjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKgBLAMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAAAQcGBAUD/8QALBABAAAFBQEAAgAEBwAAAAAAAAMEBVSUARUX0dMCBhEhgaGxBxITFDFhcf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDcFQBRAFEAUQBRAFQAUQBRAFEAAAAAAAAAAAAAAAAAAAAAURQRQBBUAFQAVABUAAABQQUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQBRFAEAVABRAFEAFQBRAFEAAAAAAAAAAAAAAAAAAAAAAAAUEAAFQAVABUABQQFBAUEAAAAAAAAAAAAAAAAAAABRABUAFQB8T8v/J5b8Spf1Vql8xY0v8AMb4gf6clC+YsX6+tdf8AvXTT+rhueqLb1DDlvZqEeBDmYesKY+PmPC+tf3rDjQ9Inxr/AC1eXZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbNJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbNJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZpK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvZ0X4T/AIk0/wDNJ2ZkKXDmZeYlZb/d/e4S0OH8ffx/m00/hr8/ev8AH966f8/r+7pNlkrWXwIXT95aRgSmv1rKQocrr96fr71l5f4g6/f/AL+tAehABUAAAAAAFBBQEFAQUBBQEFAQUBBQEFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQAFQAVABUAAAAAAAAAAAAAAAAAAAAABQEBQQFARQBFAEUAABFAAAEFAQVAAUEBQQFBAUEFQAVABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAH/9k="
-                    alt="">
-                <span> OR </span> </p> -->
-            <div class="underline">
-                <div></div>
-                <p>OR</p>
-                <div></div>
+    <div class="container">     <!-- Container divided into 2 parts - Left and Right -->
 
+        <!-- Left Part start-->
+        <div class="container__leftPart">   
+
+            <!-- Navbar containing company logo and sign-up link -->
+            <div class="container__navbar">
+                <a href="./index.html"><img id="logo" src="./images/Dexternew_logo.png"></a>
+                <div><p>Don't have an account? <a href="./signup.html">Sign Up</a></p></div>    
             </div>
 
-            <!-- google button -->
-            <div class="Sign_Up_Google_Button">
-                <a href="https://github.com/login/oauth/authorize?client_id=23ca205a4e951b3d0464&scope=user:email" class="Sign_Up_Google">
-                    <img src="https://clockify.me/assets/ui-icons/icon-google.svg" alt="Google">
-                    <span class="Sign_Up_Google_Continue">Continue with Google </span> </a>
+            <!-- Login card start-->
+            <div class="container__loginCard">
+                <h2>Log In</h2>
+                <label for="password">E-mail:</label>
+                <input type="email" placeholder="Enter email" id="email">
+                 <label for="password">Password:</label>
+                <input type="password" placeholder="Enter password" id="password">
+
+                <a id="fbtn" href="#">Forgot password?</a><br>
+
+                <!-- <div class="loginBtn-link" ><a href="#"><button class="loginCard__loginBtn" 
+                    id="login-btn" >Log in</button></a></div>   Log-in button verifies if user entered correct email. Initially set as disabled -->
+                    <button id="login-btn" class="loginCard__googleBtn">Log-In</button>
+                <div class="loginCard__line">
+                    <div class="loginCard__leftLine"></div>
+                    <p style="color: #333333; font-size: 14px;">OR</p>
+                    <div class="loginCard__rightLine"></div>
+                </div>
+                <button class="loginCard__googleBtn">Continue with Github <i class="fa-brands fa-github fa-lg"></i></button>
+                 
             </div>
+            <!-- Login card end-->
 
         </div>
-        <!-- privacy -->
-        <div class="Sign_Up_Privacy">
-            <img src="https://clockify.me/assets/ui-icons/safe.png" alt="Privacy" class="Sign_Up_Privacy_img">
-            <span class="Sign_Up_Privacy_Span"> your data is safe with us : </span>
-            <a href=""> Security Privacy</a>
+        <!-- Left Part end-->
+
+        <!-- Right Part start-->
+        <div class="container__rightPart">
+            <h2>No need to keep share do it live in a tab</h2>
+            <p>Install the browser extension<br> and edit from <br>anywhere.</p>
+            <img src="https://clockify.me/assets/ui-icons/ext-chrome.svg" class="rightPart__appstore"><br>   
+            <div class="rightPart__learnMore"><a href="#">Learn More</a></div>
         </div>
+        <!-- Right Part end-->
+
     </div>
-</div>
-</body>
+    <!-- Container end-->
 
+    <!-- <script src="log-in.js"></script> -->
+</body>
 </html>
 <script>
-    const Register_btn = document.getElementById("signup");
-    Register_btn.addEventListener("click", RegisterFunction);
-  
-    async function RegisterFunction(event) {
-      try {
-       event.preventDefault();
-       let name = document.querySelector("#name").value;
-       let email = document.querySelector("#email").value;
-        let pass = document.querySelector("#password").value;
-        
-        let userObj = {
-         name,
-          email,
-          pass
-       
-        };
-      //  let arr =[]
-      //  arr.push(userObj)
-  // console.log(arr)
-        let register_request = await fetch(
-          "http://localhost:2020/signup",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userObj),
-          }
-        )
-          .then((res) => res.json())
-          .then((res) => {
-           console.log(res.status);
-            alert("SignUP successfull")
-           
-         window.location.href="./login.html"
-         console.log("hihihi");
+      const Loginbtn = document.getElementById("login-btn");
+Loginbtn.addEventListener("click",LoginFunction);
 
-          })
-          .catch((err) => console.log(err));
-      } catch (error) {
-        alert("Something went wrong. Please try again later.");
-        console.log(error)
-      }
-
-
-   
+async function LoginFunction(event){
+    try {
+        event.preventDefault();
+        // let all_login_input = document.querySelectorAll("#login input");
+        let email = document.querySelector("#email").value
+        let pass = document.querySelector("#password").value
+ 
+    let obj  = {
+      email,pass
     }
-
-    
-
-
-
-  </script>
   
-  
+        console.log(obj);
+        let login_request = await fetch("http://localhost:2020/login",{
+            method : "POST",
+            body : JSON.stringify(obj),
+            headers : {
+                "Content-Type": "application/json", 
+            },
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res)
+            // alert(res.msg)
+            if(res.msg=="Please signup first"){
+            alert(res.msg)
+             location.href= "./signup.html"
+            }else if(res.msg=="Login successfully"){
+                         alert(res.msg)
+                         location.href= "./dexter(single).html"
+            }else if(res.msg=="Wrong Credentials"){
+              alert(res.msg)
+            }
+            
+        })
+        // .catch((err) => alert("Please signup first"))
+        
+    } catch (error) {
+		console.log(error.msg);
+        alert("error in login check");
+    }
+}
 
-  
+// const login = document.querySelector("#login-btn");
+// login.addEventListener("click", func);
+// async function func(event) {
+//   try {
+//     event.preventDefault();
+//     // let all_input_tags = document.querySelectorAll("#register input");
+
+//     let email = document.querySelector("#email").value;
+//     let  password = document.querySelector("#password").value;
+//     let userObj = {
+//       email,
+//       password
+//     };
+
+
+
+//     let register_request = await fetch("https://calm-colt-uniform.cyclic.app/user/login", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(userObj)
+//     })
+//       .then(res => res.json())
+//       .then(data => {
+//         // console.log(data)
+
+//         if (data.msg == "Login Successfully") {
+//           alert(data.msg)
+//           // console.log(data)
+//           localStorage.setItem("user", data.token);
+//           localStorage.setItem("email", email);
+//           window.location.href = "./timetracker.html"
+//         } else {
+//           alert(data.msg)
+//           window.location.href = "./login.html"
+//         }
+            
+//       })
+//       .catch(err => console.log(err))
+//   } catch (error) {
+//     alert("Something went wrong. Please try again later.");
+//   }
+// }
+</script>
