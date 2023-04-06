@@ -8,7 +8,7 @@ dex_rout.get("/c_room",(req,res)=>{
 })
 
 dex_rout.get("/lab",(req,res)=>{
-    res.sendFile(__dirname + "/../dexterlab.html");
+    // res.sendFile(__dirname + "/../dexterlab.html");
 })
 
 module.exports={

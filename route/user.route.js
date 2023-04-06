@@ -57,32 +57,12 @@ user_route.post("/login", async (req,res)=>{
 })
 
 user_route.get("/logout", (req, res) => {
-   res.send('ok')
+    // Clear the auth token from the cookie
+    res.clearCookie('token');
   
-  // client.get("token", (err, authToken) => {
-  //   if (err) {
-  //     console.error(err);
-  //     res.status(500).send("Internal Server Error");
-  //   } else if (!authToken) {
-  //     res.status(401).send("Unauthorized");
-  //   } else {
-  //     client.set("logout", authToken, (err) => {
-  //       if (err) {
-  //         console.error(err);
-  //         res.status(500).send("Internal Server Error");
-  //       } else {
-  //         client.del("token", (err) => {
-  //           if (err) {
-  //             console.error(err);
-  //             res.status(500).send("Internal Server Error");
-  //           } else {
-  //             res.status(200).send("Logged out successfully");
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }
-  // });
+    // Redirect the user to the login page
+    res.redirect('/login');
+  
 });
 
 

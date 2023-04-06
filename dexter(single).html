@@ -504,7 +504,7 @@ if(!htmlcode && !csscode && !jscode){
 async function chle() {
   try {
     // const response = await fetch("http://localhost:2020/c_room");
-    const response = await fetch(`https://dexter-backend-g9mh.onrender.com/c_room`);
+    const response = await fetch(`https://dexter-server-xpwe.onrender.com/c_room`);
     if (response.ok) {
       location.href = "createroom.html"
     } else {
@@ -518,7 +518,7 @@ async function chle() {
 async function bye() {
   try {
     // const response = await fetch("http://localhost:2020/logout");
-    const response = await fetch(`https://dexter-backend-g9mh.onrender.com/logout`);
+    const response = await fetch(`https://dexter-server-xpwe.onrender.com/logout`);
     if (response.ok) {
       const leaveRoom = confirm("Come Back Sooon?");
  
