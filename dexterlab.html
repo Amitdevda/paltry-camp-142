@@ -1267,7 +1267,8 @@
   myname.innerText= naam;
 
 
-  const client = io("http://localhost:2020/", { transports: ["websocket"] })
+  // const client = io("http://localhost:2020/", { transports: ["websocket"] })
+  const client = io("https://dexter-backend-g9mh.onrender.com", { transports: ["websocket"] })
 
 
 
@@ -1555,7 +1556,7 @@
 
   async function back() {
   try {
-    const response = await fetch("http://localhost:2020/logout");
+    const response = await fetch("https://dexter-backend-g9mh.onrender.com/logout");
     if (response.ok) {
       const leaveRoom = confirm("Come Back Sooon?");
  

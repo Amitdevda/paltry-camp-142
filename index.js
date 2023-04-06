@@ -4,7 +4,7 @@ const {user_route} = require("./route/user.route")
 const {authenticate} = require("./middleware/auth.middleware")
 const http = require("http")
 const path = require('path');
-const redis = require("redis")
+const cookieParser = require('cookie-parser');
 const { Server } = require("socket.io")
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { dex_rout } = require("./route/dexter.routes")
@@ -12,15 +12,9 @@ const { dex_rout } = require("./route/dexter.routes")
 const client_id="23ca205a4e951b3d0464"
 const client_secret="a40831240ce5aeab012a248c9e5069152dcf2976"
 
-const client= redis.createClient();
-client.on('error', err => console.log('Redis Client Error', err));
-client.connect();
-
-
-
-
 const fs = require("fs")
 const app = express()
+app.use(cookieParser());
 app.use(express.json())
  const cors = require("cors")
 app.use(cors({
@@ -72,9 +66,9 @@ app.get("/room",async(req,res)=>{
     console.log(userdetails.name);
     fs.writeFileSync("name.txt",userdetails.name)
     
-    const userEmail = await client.SET("userEmail",`${userdetails.email}`)
-    console.log(userEmail);
-   
+    // const userEmail = await client.SET("userEmail",`${userdetails.email}`)
+    // console.log(userEmail);
+    res.cookie("userEmail",`${userdetails.email}`);
    
     res.sendFile(path.join(__dirname, "../dexterlab.html"));
 })
