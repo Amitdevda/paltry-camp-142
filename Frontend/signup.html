@@ -17,7 +17,7 @@
         <!-- Navbar -->
         <div class="Sign_Up_Navbar">
             <a href="./login.html"><img id="logo" src="./images/Dexternew_logo.png" alt="logo"></a>
-            <div><p>If you already have an account ?<a class="Sign_Up_Login" href="./login.html"> Login</a></p></div>
+            <div><p>If you already have an account ?<a class="Sign_Up_Login" href="./index.html"> Login</a></p></div>
         </div>
         <!-- Get Sarted -->
         <div class="Sign_Up_GetStarted">
@@ -42,27 +42,14 @@
             <!-- create button -->
             <a href="#"><button  class="Sign_UP_Create_Button" id="signup"> CREATE FREE ACCOUNT </button></a>
             <h4 class="Sign_Up_error Sign_Up_error_msg" id="Sign_Up_error"> You must accept the terms of service </h4>
-            <!-- <p class="Sign_Up_OR"><img
-                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0HBwcHBxAQBwcHBw0HBwcHBw8ICQcNIBEWIiARFR8kHUAjIiYxHRUfITM5MTU3OjouIzQ3QDM4TjQyMjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKgBLAMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAAAQcGBAUD/8QALBABAAAFBQEAAgAEBwAAAAAAAAMEBVSUARUX0dMCBhEhgaGxBxITFDFhcf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDcFQBRAFEAUQBRAFQAUQBRAFEAAAAAAAAAAAAAAAAAAAAAURQRQBBUAFQAVABUAAABQQUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQBRFAEAVABRAFEAFQBRAFEAAAAAAAAAAAAAAAAAAAAAAAAUEAAFQAVABUABQQFBAUEAAAAAAAAAAAAAAAAAAABRABUAFQB8T8v/J5b8Spf1Vql8xY0v8AMb4gf6clC+YsX6+tdf8AvXTT+rhueqLb1DDlvZqEeBDmYesKY+PmPC+tf3rDjQ9Inxr/AC1eXZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbNJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbNJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZpK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvY56otvUMOW9mjbLJWsvgQujZZK1l8CF0DOeeqLb1DDlvZ0X4T/AIk0/wDNJ2ZkKXDmZeYlZb/d/e4S0OH8ffx/m00/hr8/ev8AH966f8/r+7pNlkrWXwIXT95aRgSmv1rKQocrr96fr71l5f4g6/f/AL+tAehABUAAAAAAFBBQEFAQUBBQEFAQUBBQEFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQAFQAVABUAAAAAAAAAAAAAAAAAAAAABQEBQQFARQBFAEUAABFAAAEFAQVAAUEBQQFBAUEFQAVABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAH/9k="
-                    alt="">
-                <span> OR </span> </p> -->
-            <div class="underline">
-                <div></div>
-                <p>OR</p>
-                <div></div>
-
+            
+            <div class="Sign_Up_Privacy">
+                <img src="https://clockify.me/assets/ui-icons/safe.png" alt="Privacy" class="Sign_Up_Privacy_img">
+                <span class="Sign_Up_Privacy_Span"> your data is safe with us : </span>
+                <a href="#"> Security Privacy</a>
             </div>
-
-            <!-- google button -->
-            <button class="loginCard__googleBtn">Continue with Github  <i class="fa-brands fa-github fa-lg"></i></button>
-
         </div>
         <!-- privacy -->
-        <div class="Sign_Up_Privacy">
-            <img src="https://clockify.me/assets/ui-icons/safe.png" alt="Privacy" class="Sign_Up_Privacy_img">
-            <span class="Sign_Up_Privacy_Span"> your data is safe with us : </span>
-            <a href=""> Security Privacy</a>
-        </div>
     </div>
 </div>
 </body>
@@ -104,7 +91,7 @@
            console.log(res.status);
             alert("SignUP successfull")
            
-         window.location.href="./login.html"
+         window.location.href="index.html"
 
           })
           .catch((err) => console.log(err));
@@ -112,15 +99,7 @@
         alert("Something went wrong. Please try again later.");
         console.log(error)
       }
-
-
-   
     }
-
-    
-
-
-
   </script>
   
   

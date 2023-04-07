@@ -121,6 +121,7 @@ wss.on("connection", (socket) => {
         wss.to(user.room).emit("disc", {
             room: user.room, users: user.username, dis: 1
         })
+        
          wss.to(user.room).emit("roomUsers", {
             room: user.room, users: getRoomUsers(user.room)
         })

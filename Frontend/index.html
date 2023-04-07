@@ -108,50 +108,23 @@ async function LoginFunction(event){
         alert("error in login check");
     }
 }
+//====================Oauth==================================
 
 
-// const login = document.querySelector("#login-btn");
-// login.addEventListener("click", func);
-// async function func(event) {
-//   try {
-//     event.preventDefault();
-//     // let all_input_tags = document.querySelectorAll("#register input");
+let git= document.getElementsByClassName('loginCard__googleBtn')
 
-//     let email = document.querySelector("#email").value;
-//     let  password = document.querySelector("#password").value;
-//     let userObj = {
-//       email,
-//       password
-//     };
-
-
-
-//     let register_request = await fetch("https://calm-colt-uniform.cyclic.app/user/login", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(userObj)
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         // console.log(data)
-
-//         if (data.msg == "Login Successfully") {
-//           alert(data.msg)
-//           // console.log(data)
-//           localStorage.setItem("user", data.token);
-//           localStorage.setItem("email", email);
-//           window.location.href = "./timetracker.html"
-//         } else {
-//           alert(data.msg)
-//           window.location.href = "./login.html"
-//         }
-            
-//       })
-//       .catch(err => console.log(err))
-//   } catch (error) {
-//     alert("Something went wrong. Please try again later.");
-//   }
-// }
+git.addEventListener('click', async ()=>{
+     
+  try {
+    const response = await fetch("https://dexter-server-xpwe.onrender.com/room");
+    if (response.ok) {
+        window.location.href = "dexter(single).html";
+    } else {
+      console.error(`Error: ${response.status} - ${response.statusText}`);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+    
+})
 </script>
