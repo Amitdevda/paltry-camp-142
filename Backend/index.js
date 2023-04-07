@@ -1,7 +1,7 @@
 const express = require("express")
 const {connection} = require("./config/db")
 const {user_route} = require("./route/user.route")
-const {authenticate} = require("./middleware/auth.middleware")
+const {authenticate} = require("./middleware/auth.middleware.js")
 const http = require("http")
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -24,8 +24,6 @@ app.use(cors({
 
 
 app.use("/",user_route)
-app.use(authenticate)
-app.use('/',dex_rout)
 
 
 
@@ -46,15 +44,15 @@ app.get("/room",async(req,res)=>{
           "content-type":"application/json"
         },
         body: JSON.stringify({
-    client_id:client_id,
-    client_secret:client_secret,
-    code
-    })
-  }).then((res)=>res.json())
-  const access_token=accesstoken.access_token
-//   console.log(code);
-  // connect room  here
-
+            client_id:client_id,
+            client_secret:client_secret,
+            code
+        })
+    }).then((res)=>res.json())
+    const access_token=accesstoken.access_token
+    //   console.log(code);
+    // connect room  here
+    
     const userdetails=await fetch("https://api.github.com/user",{
         headers:{
             Authorization: `Bearer ${access_token}`,
@@ -69,11 +67,13 @@ app.get("/room",async(req,res)=>{
     // const userEmail = await client.SET("userEmail",`${userdetails.email}`)
     // console.log(userEmail);
     res.cookie("userEmail",`${userdetails.email}`);
-   
-    res.sendFile(path.join(__dirname, "../dexterlab.html"));
+    
+    res.sendFile(path.join(__dirname, "../dexter(single).html"));
 })
 
 
+app.use(authenticate)
+app.use('/',dex_rout)
 
 // app.get("/rooms",(req,res)=>{
 //     res.sendFile(path.join(__dirname, "../dexterlab.html"));
@@ -121,7 +121,9 @@ wss.on("connection", (socket) => {
         wss.to(user.room).emit("disc", {
             room: user.room, users: user.username, dis: 1
         })
-        
+         wss.to(user.room).emit("roomUsers", {
+            room: user.room, users: getRoomUsers(user.room)
+        })
     })
 
     socket.on("chatMessage",(data)=>{
@@ -129,9 +131,9 @@ wss.on("connection", (socket) => {
               socket.emit("mymsg", data)
 
   });
-//   function getRoomUsers(room) {
-//     return clientArr.filter(user=> user.room == room)
-//  }
+  function getRoomUsers(room) {
+    return clientArr.filter(user=> user.room == room)
+ }
 
 
   //========================till-here=============================

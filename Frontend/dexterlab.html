@@ -1276,10 +1276,10 @@
   client.emit("join", { username, room })
 
 
-  client.on("roomUsers", ({ room, users }) => {
+  client.on("roomUsers", (data) => {
     console.log(username, room)
-    outputRoomName(room)
-    outputRoomUsers(users)
+    outputRoomName(data.room)
+    outputRoomUsers(data.users)
   })
 
   client.on("disc", (data) => {
