@@ -178,11 +178,13 @@ wss.on("connection", (socket) => {
         
         const user = userLeave(socket.id)
           //  Get all room user
-          console.log(user.username + "  has left the lab")
           wss.to(user.room).emit("disc", {
             room: user.room, users: user.username, dis:0
         })
-
+         
+        wss.to(user.room).emit("roomUsers", {
+            room: user.room, users: getRoomUsers(user.room)
+        })
     })
     function userLeave(id){
         const index = clientArr.findIndex(user=>user.id==id)
