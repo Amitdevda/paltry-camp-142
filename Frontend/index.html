@@ -39,7 +39,7 @@
                     <p style="color: #333333; font-size: 14px;">OR</p>
                     <div class="loginCard__rightLine"></div>
                 </div>
-                <button class="loginCard__googleBtn">Continue with Github <i class="fa-brands fa-github fa-lg"></i></button>
+               <a href="https://github.com/login/oauth/authorize?client_id=23ca205a4e951b3d0464&scope=user:email"> <button class="loginCard__googleBtn">Continue with Github <i class="fa-brands fa-github fa-lg"></i></button></a>
                  
             </div>
             <!-- Login card end-->
@@ -111,20 +111,20 @@ async function LoginFunction(event){
 //====================Oauth==================================
 
 
-let git= document.getElementsByClassName('loginCard__googleBtn')
+// let git= document.getElementsByClassName('loginCard__googleBtn')
 
-git.addEventListener('click', async ()=>{
+// git.addEventListener('click', async ()=>{
      
-  try {
-    const response = await fetch("https://dexter-server-xpwe.onrender.com/room");
-    if (response.ok) {
-        window.location.href = "dexter(single).html";
-    } else {
-      console.error(`Error: ${response.status} - ${response.statusText}`);
-    }
-  } catch (err) {
-    console.error(err);
-  }
+//   try {
+//     const response = await fetch("https://dexter-server-xpwe.onrender.com/room");
+//     if (response.ok) {
+//         window.location.href = "dexter(single).html";
+//     } else {
+//       console.error(`Error: ${response.status} - ${response.statusText}`);
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
     
-})
+// })
 </script>
