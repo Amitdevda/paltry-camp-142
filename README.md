@@ -53,7 +53,7 @@ Just enter your Username and RoomID and share room ID to your friends click on j
 
 7. After joining room you can see multiple options
 ![image](https://user-images.githubusercontent.com/112754570/231204834-097f6bfe-5875-4ca9-9274-ab5b18a2db0b.png)
-ALter of user joining, coding areas, hamberger icon where all users and room id will be shown, in bottom section you will se chat button.
+After of user joining, coding areas, hamberger icon where all users and room id will be shown, in bottom section you will se chat button.
 ![image](https://user-images.githubusercontent.com/112754570/231207367-15185fef-07ff-47f7-9105-7d8822bb665a.png)
 Here you can see the list of users and room code.
 
