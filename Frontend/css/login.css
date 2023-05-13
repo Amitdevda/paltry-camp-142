@@ -136,6 +136,7 @@ body {
 
 }
 
+
 .loginCard__googleBtn:hover {
     background-color: #219ce4;
     color: #fff;
@@ -224,6 +225,20 @@ body {
             background-color: #00bcd4;
         }
     }
+    .container__rightPart {
+        height: 150px;
+    }
+
+    .container__leftPart {
+        width: 100%;
+        margin: auto;
+        animation: none;
+    }
+
+    .container__loginCard {
+        width: 80%;
+        margin: auto;
+    }
     .container__rightPart h2 {
         font-size: 28px;
     }
@@ -239,46 +254,70 @@ body {
     .container__navbar > div > p {
         margin-right: 100px;
     }
-} 
-.container__loginCard{
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media only screen and (max-width: 400px) {
+    .container__rightPart {
+        display: none;
+    }
+
+    .container__leftPart {
+        width: 100%;
+        margin: auto;
+        animation: none;
+    }
+
+    .container__loginCard {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+.container__loginCard {
     display: flex;
     flex-direction: column;
     padding: 2rem;
     margin-top: 5rem;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    
 }
 
-input, label{
+input,
+label {
     margin: 5px;
     font-size: 15px;
-
 }
-input{
+
+input {
     height: 30px;
     border-radius: 10px;
     border-color: gray;
 }
-input:hover{
-    background-color:#219de460 ;
+
+input:hover {
+    background-color: #219de460;
 }
-#fbtn{
+
+#fbtn {
     display: flex;
     flex-direction: row-reverse;
 }
-#logo{
+
+#logo {
     width: 250px;
     margin-top: -60px;
     margin-left: -30px;
 }
-button{
+
+button {
     font-size: 16px;
     border: none;
     border-radius: 10px;
     border-color: gray;
 }
-.container__loginCard>h2{
+
+.container__loginCard > h2 {
     text-align: center;
     text-decoration: underline;
 }
