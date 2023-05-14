@@ -2,7 +2,7 @@ const mongoose=require("mongoose")
 const userSchema= mongoose.Schema({
  name:{
     type: String,
-    required: false,
+    required: true,
   },
  email:{
     type: String,
@@ -14,7 +14,7 @@ const userSchema= mongoose.Schema({
   }
 })
 
-const UserModel=mongoose.model("Dexter",userSchema)
+const UserModel=mongoose.model("User",userSchema)
 
 module.exports={
  UserModel

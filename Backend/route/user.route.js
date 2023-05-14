@@ -1,69 +1,60 @@
 const express = require("express")
-const {UserModel} = require("../model/user.model")
+const { UserModel } = require("../model/user.model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const cookieParser = require('cookie-parser');
-
-require('dotenv').config()
-
-
+const { createClient } = require("redis");
+const {BlacklistModel} = require("../model/block")
+const client = createClient("redis://default:pAZIQGIYzeoDcfPm3PKrPU0gmPWpMeQo@redis-11856.c301.ap-south-1-1.ec2.cloud.redislabs.com:11856")
+client.on("error", (err) => console.log("Redis Client Error", err));
+client.connect();
 const user_route = express.Router()
-user_route.use(cookieParser());
+user_route.use(express.json());
 
-user_route.post("/signup",async (req,res)=>{
-    const {name,email,pass} = req.body
+user_route.post("/signup", async (req, res) => {
+    const { name, email, pass } = req.body
     try {
-        bcrypt.hash(pass,4,async (err,secure_pass)=>{
-            if(err){
+        bcrypt.hash(pass, 4, async (err, hash) => {
+            if (err) {
                 console.log(err);
                 res.send("something went wrong")
-            }else{
-                const user = new UserModel({name, email, pass:secure_pass})
+            } else {
+                const user = new UserModel({ name, email, pass: hash })
                 await user.save()
-                res.json({"msg":"signup successfull"})
+                res.json({ "msg": "signup successfull", user })
             }
         })
     } catch (error) {
         res.send("error in register the user")
         console.log(error);
     }
-    
+
 })
 
-user_route.post("/login", async (req,res)=>{
-    const {email,pass} = req.body
+user_route.post("/login", async (req, res) => {
+    const { email, pass } = req.body
     try {
-        const user = await UserModel.findOne({email})
-        if(!user){
-            res.json({"msg":"Please signup first"})
-        }else{
-            const hash_pass = user?.pass;//user?.pass;----------if the user is there next go to the further process othervicw not...
-            bcrypt.compare(pass, hash_pass,async (err, result)=>{
-            if(result){
-                const token = jwt.sign({userID:user._id, role : user.role},"N_token", {expiresIn: '3h'});
-                // await client.SETEX("token" ,320 ,token)
-                res.cookie("token",token)
-                res.json({"msg":"Login successfully"})
-            }else{
-                console.log(err);
-               res.json({"msg":"Wrong Credentials"})
-            }
-        })
+        const user = await UserModel.find({ email })
+        if (user.length > 0) {
+            bcrypt.compare(pass, user[0].pass, async (err, result) => {
+                if (result == true) {
+                    const token = jwt.sign({ userId: user[0]._id }, "imran", {
+                        expiresIn: "10h",
+                    });
+                    client.set("token", token);
+                    res.send({ msg: "Login successful", token: token, user });
+                } else if (result === false) {
+                    res.send({ msg: "Wrong password" });
+                }
+            })
+        }
+        else{
+            res.send({msg:"Please signup first"})
         }
     } catch (error) {
-       res.json({"msg":"Login failed Error in try"})
+        res.json({ "msg": "Login failed Error in try" })
         console.log(error);
     }
 })
-
-user_route.get("/logout", (req, res) => {
-    // Clear the auth token from the cookie
-    res.clearCookie('token');
-  
-    // Redirect the user to the login page
-    res.redirect('/login');
-  
-});
 
 
 
@@ -84,4 +75,4 @@ user_route.get("/logout", (req, res) => {
     }
 }) */
 
-module.exports = {user_route}
+module.exports = { user_route }

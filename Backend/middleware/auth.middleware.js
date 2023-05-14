@@ -1,63 +1,43 @@
-// const jwt = require("jsonwebtoken")
-// const cookieParser = require('cookie-parser');
-
-
-// const authenticate = async(req,res,next)=>{
-//      //const token = req.headers.authorization?.split(" ")[1]
-//     const token = await client.GET("token")
-//     //console.log(token);token is not there it will throw ***null***
-
-//     if (!token) {
-//         res.send("Token not available, login again")
-//     } else {
-//         //blacklist token
-//         //const blacklisted_data = JSON.parse(fs.readFileSync("./blacklist.json","utf-8"));
-//         let token_checking = await client.SREM("logout", token)//=> either 0 or 1
-//         //console.log(token_checking)
-//         if (token_checking == 1) {
-//             res.send("Login again")
-//         } else {
-//             // token verification
-//             if (token) {
-//                 jwt.verify(token, "N_token", function (err, decode) {
-//                     if (decode) {
-//                         // const userrole = decode?.role
-//                         // req.body.userrole = userrole
-//                         next()
-//                     } else {
-//                         res.send({ msg: "please login first", err })
-//                     }
-//                 })
-
-//             } else {
-//                 res.send("This route has been producted, Please login first")
-//             }
-//         }
-//     }
-// }
-
-// module.exports = {authenticate}
-
-const jwt = require("jsonwebtoken");
-const cookieParser = require('cookie-parser');
+const express = require("express")
+const jwt = require("jsonwebtoken")
+const { UserModel } = require("../model/user.model")
+const { BlacklistModel } = require("../model/block")
+const { createClient } = require("redis");
+const client = createClient("redis://default:pAZIQGIYzeoDcfPm3PKrPU0gmPWpMeQo@redis-11856.c301.ap-south-1-1.ec2.cloud.redislabs.com:11856")
+client.on("error", (err) => console.log("Redis Client Error", err));
+client.connect();
 
 const authenticate = async (req, res, next) => {
-  const token = req.cookies.authToken;
+  console.log("Middleware")
+  const token = await client.get('token')
+  console.log(token)
+  if (token) {
+    const blocked = await BlacklistModel.find({ token })
+    if (blocked.length > 0) {
+      res.end("Your Logged out, Please login again")
+    }
 
-  if (!token) {
-    res.send("Token not available, login again");
-  } else {
-    // token verification
-    jwt.verify(token, "N_token", function (err, decode) {
-      if (decode) {
-        // const userrole = decode?.role
-        // req.body.userrole = userrole
-        next();
-      } else {
-        res.send({ msg: "please login first", err });
+    jwt.verify(token, "imran", async (err, decoded) => {
+      if (decoded) {
+        // req.body.user = decoded.userId
+        // req.user = await UserModel.find({ _id: decoded.userId })
+        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        next()
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+      }
+      else {
+        res.send({ "msg": "Please login first" })
       }
     });
-  }
-};
 
-module.exports = { authenticate };
+  }
+  else {
+    res.send({ "msg": "Please login first" })
+    // res.status(400).send({ "msg": "Please login first" })
+  }
+
+}
+
+module.exports = {
+  authenticate
+}
