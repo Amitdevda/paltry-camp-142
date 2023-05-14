@@ -2,12 +2,11 @@ const express = require("express")
 const { UserModel } = require("../model/user.model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const { createClient } = require("redis");
+const fs = require("fs")
 const {BlacklistModel} = require("../model/block")
-const client = createClient("redis://default:pAZIQGIYzeoDcfPm3PKrPU0gmPWpMeQo@redis-11856.c301.ap-south-1-1.ec2.cloud.redislabs.com:11856")
-client.on("error", (err) => console.log("Redis Client Error", err));
-client.connect();
+var cookieParser = require('cookie-parser')
 const user_route = express.Router()
+user_route.use(cookieParser())
 user_route.use(express.json());
 
 user_route.post("/signup", async (req, res) => {
@@ -40,7 +39,9 @@ user_route.post("/login", async (req, res) => {
                     const token = jwt.sign({ userId: user[0]._id }, "imran", {
                         expiresIn: "10h",
                     });
-                    client.set("token", token);
+                    fs.writeFileSync("token.txt", token);
+                    res.clearCookie("tokn")
+                    await res.cookie("tokn", token)
                     res.send({ msg: "Login successful", token: token, user });
                 } else if (result === false) {
                     res.send({ msg: "Wrong password" });
@@ -56,23 +57,5 @@ user_route.post("/login", async (req, res) => {
     }
 })
 
-
-
-/* user_route.get("/getnewtoken",(req,res)=>{
-    const refresh_token = req.headers.authorization?.split(" ")[1]
-
-    if(!refresh_token){
-        res.send("login again")
-    }else{
-        jwt.verify(refresh_token,"R_token", function(err,decode){
-            if(decode){
-                const normal_token = jwt.sign({userID:decode._id, role: decode.role},"N_token",{expiresIn:60})
-                res.send({msg:"login successful",normal_token})
-            }else{
-                res.send({msg:"Please login first",err})
-            }
-        })
-    }
-}) */
 
 module.exports = { user_route }
