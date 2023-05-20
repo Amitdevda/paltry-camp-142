@@ -8,6 +8,10 @@ var cookieParser = require('cookie-parser')
 const user_route = express.Router()
 user_route.use(cookieParser())
 user_route.use(express.json());
+const cors = require("cors")
+
+
+
 
 user_route.post("/signup", async (req, res) => {
     const { name, email, pass } = req.body

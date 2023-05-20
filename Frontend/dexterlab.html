@@ -712,6 +712,7 @@
   }
 
   .text textarea {
+    border: 30px solid green;
     resize: none;
     width: 100%;
     height: 34%;
@@ -799,6 +800,7 @@
   /* Messages */
   .chatbox__messages {
     padding: 0 20px;
+    border: 11px solid rgb(255, 255, 255);
   }
 
   /* FOOTER */
@@ -878,11 +880,14 @@
   }
 
   .chatbox__support {
+    /* border: 1px solid red; */
     position: fixed;
-    top: 162px;
+    padding-bottom: 100px;
+    padding-top: 20px;
+    top: 140px;
     right: 65px;
     width: 352px;
-    height: 400px;
+    height: 360px;
     border-radius: 0.1px;
     overflow-y: scroll;
   }
@@ -1239,7 +1244,6 @@
 
 </html>
 
-
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
   integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
   </script>
@@ -1249,10 +1253,8 @@
 
   const piche = () => {
     const leaveRoom = confirm("Are you sur you want to leave room?");
- 
     if(leaveRoom){
-        window.location.href = "./createroom.html";
-
+        window.location.href = "./dexter(single).html";
     }
   }
 
@@ -1266,14 +1268,12 @@
   myname.innerText= naam;
 
 
-  // const client = io("http://localhost:2020/", { transports: ["websocket"] })
-  const client = io("https://dexter-server-xpwe.onrender.com", { transports: ["websocket"] })
-
+  // const client = io("https://dexter-gn6a.onrender.com"", { transports: ["websocket"] })
+  const client = io("https://dexterserver.onrender.com/", { transports: ["websocket"] })
 
 
   //================Edited by me==============
   client.emit("join", { username, room })
-
 
   client.on("roomUsers", (data) => {
     outputRoomName(data.room)
@@ -1283,7 +1283,6 @@
   client.on("disc", (data) => {
     showPopup(data)
   })
-
 
   function outputRoomName(room) {
     roomName.innerText = room;
@@ -1319,7 +1318,7 @@
       }
       setTimeout(function () {
         popup.style.display = 'none';
-      }, 3000);
+      }, 1000);
     }
   }
 
@@ -1344,11 +1343,7 @@
   })
 
 
-
-
   //========================= till-here============================
-
-
 
   let c = 0;
   client.on("fst", (data) => {
@@ -1553,21 +1548,15 @@
   }
 
   async function back() {
-  try {
-    const response = await fetch("https://dexter-server-xpwe.onrender.com/logout");
-    if (response.ok) {
-      const leaveRoom = confirm("Come Back Sooon 8-(");
- 
-    if(leaveRoom){
-        window.location.href = "./index.html";
+//         https://dexter-gn6a.onrender.com
+alert("You are logged out")
+    window.location.href = "./index.html";
 
-    }
-    } else {
-      console.error(`Error: ${response.status} - ${response.statusText}`);
-    }
-  } catch (err) {
-    console.error(err);
-  }
+    // fetch(`https://dexter-gn6a.onrender.com/usr/logout`).then(res => res.json()).then(res => {
+    //   if (res.msg == "You are logged out") {
+    //     alert("You are logged out")
+    //   }
+    // })
 }
 
 </script>

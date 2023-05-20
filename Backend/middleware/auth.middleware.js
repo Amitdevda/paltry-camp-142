@@ -6,6 +6,10 @@ const { BlacklistModel } = require("../model/block")
 const fs = require("fs")
 const app= express()
 app.use(cookieParser())
+const cors = require("cors")
+app.use(cors({
+    origin: "*"
+}))
 
 const authenticate = async (req, res, next) => {
   let token = fs.readFileSync('./token.txt',

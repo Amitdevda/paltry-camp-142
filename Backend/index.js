@@ -36,26 +36,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function (user, cb) {
-    cb(null, user.id);
-});
-
-passport.deserializeUser(function (id, cb) {
-    cb(null, id);
-});
-let client_id="47cdbf9caf20df07fcd7"
-let client_secret="a6a74e7dc8023f676a4a9d38cf11de6bcec34933"
-passport.use(new GitHubStrategy({
-    clientID: "47cdbf9caf20df07fcd7",
-    clientSecret: "a6a74e7dc8023f676a4a9d38cf11de6bcec34933",
-    callbackURL: "http://localhost:2020/auth/github/callback"
-    // callbackURL: "https://github.com/auth/github/callback"
-},
-    function (accessToken, refreshToken, profile, cb) {
-        console.log(profile)
-        cb(null, profile)
-    }
-));
+    let client_id="47cdbf9caf20df07fcd7"
+    let client_secret="a6a74e7dc8023f676a4a9d38cf11de6bcec34933"
 app.get("/",(req,res)=>{
     res.clearCookie("tokn")
     const token = jwt.sign({ userId: "user[0]._id" }, "imran", {
@@ -67,7 +49,6 @@ app.get("/get",(req,res)=>{
     var Cookie = req.headers.cookie;
     // let t=req.cookie("tokn")
     res.send({"msg":Cookie})
-    // res.send("Welcome")
 })
 
 
@@ -78,7 +59,7 @@ app.get("/auth/github", async(req,res)=>{
     });
     fs.writeFileSync("token.txt", token);
     const {code}= req.query
-    // console.log(code)
+    console.log(code)
     const accesstoken= await fetch("https://github.com/login/oauth/access_token",{
         method:"POST",
         headers:{
@@ -91,7 +72,6 @@ app.get("/auth/github", async(req,res)=>{
             code:code
         })
     }).then((res) => res.json())
-
     const acces=accesstoken.access_token
     const userdetails= await fetch("https://api.github.com/user",{
         headers:{
@@ -99,19 +79,20 @@ app.get("/auth/github", async(req,res)=>{
         }
     }).then((res) => res.json())
     console.log(userdetails)
-    res.redirect("http://127.0.0.1:5500/Frontend/dexter(single).html")
-    // res.send("OK")
+    res.redirect("https://6461df325d790220ca98b49e--curious-licorice-7e88d0.netlify.app/dexter(single).html")
 })
 
 
 //---------------------------GITHUB OAUTH COMPLETED----------------------------------//
 
 
-
 //------------------------------USER ROUTE----------------------------------//
 
 app.use("/user", user_route)
 
+//------------------------------FOR CREATING ROOM-------------------------------------//
+
+app.use("/room",dex_rout)
 
 //--------------------------FROM HERE AUTHENTICATION STARTS-------------------------//
 
@@ -131,15 +112,13 @@ app.get("/allUsers", async (req, res) => {
 
 
 //------------------------------FOR LOGOUT---------------------------------------//
-app.get("/logout",async (req, res) => {
-    const token = await client.get('token')
-    const user = new BlacklistModel({token})
+app.get("/usr/logout" ,async (req,res)=>{
+    let token= fs.readFileSync("token.txt",{ encoding: 'utf8'})
+    let user = new BlacklistModel({token})
     await user.save()
-    res.send({"msg":"You are logged out"})
-});
+    res.send({"msg":"You are logged out",token})
 
-//------------------------------FOR CREATING ROOM-------------------------------------//
-app.use("/room",dex_rout)
+})
 
 //----------------------------WEB SOCKET------------------------------------//
 const httpServer = http.createServer(app)
@@ -171,7 +150,7 @@ wss.on("connection", (socket) => {
     }
 
 
-    //========================till-here=============================
+    //========================till-here=============================//
 
     socket.on("html", (data) => {
         console.log(data)
@@ -215,7 +194,8 @@ wss.on("connection", (socket) => {
     }
 })
 
-//--------------------------------LISTENING AND RUNNING SERVER-----------------------------------//
+
+//------------------------------LISTENING AND RUNNING SERVER-----------------------------------//
 
 httpServer.listen(2020 , async () => {
     try {

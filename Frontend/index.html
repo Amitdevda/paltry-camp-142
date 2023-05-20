@@ -10,7 +10,8 @@
 </head>
 <script src="https://kit.fontawesome.com/b471923b50.js" crossorigin="anonymous"></script>
 <body>
-    <div class="container">     <!-- Container divided into 2 parts - Left and Right -->
+    <div class="container">     
+        <!-- Container divided into 2 parts - Left and Right -->
 
         <!-- Left Part start-->
         <div class="container__leftPart">   
@@ -28,19 +29,8 @@
                 <input type="email" placeholder="Enter email" id="email">
                  <label for="password">Password:</label>
                 <input type="password" placeholder="Enter password" id="password">
-
                 <a id="fbtn" href="#">Forgot password?</a><br>
-
-                <!-- <div class="loginBtn-link" ><a href="#"><button class="loginCard__loginBtn" 
-                    id="login-btn" >Log in</button></a></div>   Log-in button verifies if user entered correct email. Initially set as disabled -->
-                    <button id="login-btn" class="loginCard__googleBtn">Log-In</button>
-                <div class="loginCard__line">
-                    <div class="loginCard__leftLine"></div>
-                    <p style="color: #333333; font-size: 14px;">OR</p>
-                    <div class="loginCard__rightLine"></div>
-                </div>
-               <a href="https://github.com/login/oauth/authorize?client_id=23ca205a4e951b3d0464&scope=user:email"> <button class="loginCard__googleBtn">Continue with Github <i class="fa-brands fa-github fa-lg"></i></button></a>
-                 
+                <button id="login-btn" class="loginCard__googleBtn">Log-In</button>
             </div>
             <!-- Login card end-->
 
@@ -57,9 +47,7 @@
         <!-- Right Part end-->
 
     </div>
-    <!-- Container end-->
 
-    <!-- <script src="log-in.js"></script> -->
 </body>
 </html>
 <script>
@@ -67,19 +55,18 @@
       const Loginbtn = document.getElementById("login-btn");
 Loginbtn.addEventListener("click",LoginFunction);
 
+//-------------------------FOR LOGIN--------------------------//
 async function LoginFunction(event){
     try {
         event.preventDefault();
-        // let all_login_input = document.querySelectorAll("#login input");
         let email = document.querySelector("#email").value
         let pass = document.querySelector("#password").value
  
     let obj  = {
       email,pass
     }
-  
         console.log(obj);
-        let login_request = await fetch("https://dexter-server-xpwe.onrender.com/login",{
+        let login_request = await fetch("https://dexterserver.onrender.com/user/login",{
             method : "POST",
             body : JSON.stringify(obj),
             headers : {
@@ -89,42 +76,21 @@ async function LoginFunction(event){
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
-            // alert(res.msg)
             if(res.msg=="Please signup first"){
             alert(res.msg)
              location.href= "./signup.html"
-            }else if(res.msg=="Login successfully"){
+            }else if(res.msg=="Login successful"){
                          alert(res.msg)
                          location.href= "./dexter(single).html"
-            }else if(res.msg=="Wrong Credentials"){
+            }else if(res.msg=="Wrong password"){
               alert(res.msg)
-            }
-            
+            }           
         })
-        // .catch((err) => alert("Please signup first"))
         
     } catch (error) {
 		console.log(error.msg);
         alert("error in login check");
     }
 }
-//====================Oauth==================================
 
-
-// let git= document.getElementsByClassName('loginCard__googleBtn')
-
-// git.addEventListener('click', async ()=>{
-     
-//   try {
-//     const response = await fetch("https://dexter-server-xpwe.onrender.com/room");
-//     if (response.ok) {
-//         window.location.href = "dexter(single).html";
-//     } else {
-//       console.error(`Error: ${response.status} - ${response.statusText}`);
-//     }
-//   } catch (err) {
-//     console.error(err);
-//   }
-    
-// })
 </script>

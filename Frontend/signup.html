@@ -2,106 +2,101 @@
 <html>
 
 <head>
-    <title>
-        Sign Up
-    </title>
-    <link rel="stylesheet" href="./css/signup.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>
+    Sign Up
+  </title>
+  <link rel="stylesheet" href="./css/signup.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <script src="https://kit.fontawesome.com/b471923b50.js" crossorigin="anonymous"></script>
+
 <body>
-    <div class="Sign_Up">
+  <div class="Sign_Up">
     <div class="Sign_Up_Contianer">
-        <!-- Navbar -->
-        <div class="Sign_Up_Navbar">
-            <a href="./login.html"><img id="logo" src="./images/Dexternew_logo.png" alt="logo"></a>
-            <div><p>If you already have an account ?<a class="Sign_Up_Login" href="./index.html"> Login</a></p></div>
+      <!-- Navbar -->
+      <div class="Sign_Up_Navbar">
+        <a href="./login.html"><img id="logo" src="./images/Dexternew_logo.png" alt="logo"></a>
+        <div>
+          <p>If you already have an account ?<a class="Sign_Up_Login" href="./index.html"> Login</a></p>
         </div>
-        <!-- Get Sarted -->
-        <div class="Sign_Up_GetStarted">
-            <p class="Sign_Up_GetStarted_Get"> Get started with Dextor</p>
-            <p class="Sign_Up_GetStarted_Create"> Create a free account to start texting and supercharge your
-                productivity</p>
-            <p class="SIgn_Up_GetStarted_Credit"> No credit card required · Unsubscribe at any time</p>
-        </div>
-        <!--Sign Up Form -->
-        <div class="Sign_Up_Form">
-            <label class="Sign_Up_Form_SignUp"> Sign Up</label>
-            <input type="text" name="name" id="name" placeholder="Enter name" required/>
-            <input type="text" name="email" id="email" placeholder="Enter email" required/>
-            <input type="password" name="password" id="password" placeholder="Choose password" required/>
-            <!-- terms check box -->
-            <label class="Sign_Up_Terms">
-                <input type="Checkbox" class="Sign_Up_Checkbox" id="Sign_Up_Checkbox" required checked>
-                I agree to the
-                <span class="Sign_Up_Checkmark"></span>
-                <a href="#">Terms of Use</a>
-            </label>
-            <!-- create button -->
-            <a href="#"><button  class="Sign_UP_Create_Button" id="signup"> CREATE FREE ACCOUNT </button></a>
-            <h4 class="Sign_Up_error Sign_Up_error_msg" id="Sign_Up_error"> You must accept the terms of service </h4>
+      </div>
+      <!-- Get Sarted -->
+      <div class="Sign_Up_GetStarted">
+        <p class="Sign_Up_GetStarted_Get"> Get started with Dextor</p>
+        <p class="Sign_Up_GetStarted_Create"> Create a free account to start texting and supercharge your
+          productivity</p>
+        <p class="SIgn_Up_GetStarted_Credit"> No credit card required · Unsubscribe at any time</p>
+      </div>
+      <!--Sign Up Form -->
+      <div class="Sign_Up_Form">
+        <label class="Sign_Up_Form_SignUp"> Sign Up</label>
+        <input type="text" name="name" id="name" placeholder="Enter name" required />
+        <input type="text" name="email" id="email" placeholder="Enter email" required />
+        <input type="password" name="password" id="password" placeholder="Choose password" required />
+        <!-- terms check box -->
+        <label class="Sign_Up_Terms">
+          <input type="Checkbox" class="Sign_Up_Checkbox" id="Sign_Up_Checkbox" required checked>
+          I agree to the
+          <span class="Sign_Up_Checkmark"></span>
+          <a href="#">Terms of Use</a>
+        </label>
+        <!-- create button -->
+        <a href="#"><button class="Sign_UP_Create_Button" id="signup"> CREATE FREE ACCOUNT </button></a>
+
+        <a href="https://github.com/login/oauth/authorize?client_id=47cdbf9caf20df07fcd7"><button class="Sign_UP_Create_Button" id="signup"
+            style="margin-top: 10px;"> SIGNUP WITH GITHUB </button></a>
+
             
-            <div class="Sign_Up_Privacy">
-                <img src="https://clockify.me/assets/ui-icons/safe.png" alt="Privacy" class="Sign_Up_Privacy_img">
-                <span class="Sign_Up_Privacy_Span"> your data is safe with us : </span>
-                <a href="#"> Security Privacy</a>
-            </div>
+        <div class="Sign_Up_Privacy">
+          <img src="https://clockify.me/assets/ui-icons/safe.png" alt="Privacy" class="Sign_Up_Privacy_img">
+          <span class="Sign_Up_Privacy_Span"> your data is safe with us : </span>
+          <a href="#"> Security Privacy</a>
         </div>
-        <!-- privacy -->
+      </div>
+      <!-- privacy -->
     </div>
-</div>
+  </div>
 </body>
 
 </html>
+<script src="../Backend/index.js"></script>
 <script>
-    const Register_btn = document.getElementById("signup");
-    Register_btn.addEventListener("click", RegisterFunction);
-  
-    async function RegisterFunction(event) {
-      try {
-       event.preventDefault();
-       let name = document.querySelector("#name").value;
-       let email = document.querySelector("#email").value;
-        let pass = document.querySelector("#password").value;
-        
-        let userObj = {
-         name,
-          email,
-          pass
-       
-        };
-      //  let arr =[]
-      //  arr.push(userObj)
-  // console.log(arr)
-        let register_request = await fetch(
-          "https://dexter-server-xpwe.onrender.com/signup",
-          // "http://localhost:2020/signup",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userObj),
-          }
-        )
-          .then((res) => res.json())
-          .then((res) => {
-           console.log(res.status);
-            alert("SignUP successfull")
-           
-         window.location.href="index.html"
+  document.getElementById("signup").addEventListener("click", (re)=>{
+    re.preventDefault();
+      let name = document.querySelector("#name").value;
+      let email = document.querySelector("#email").value;
+      let pass = document.querySelector("#password").value;
 
-          })
-          .catch((err) => console.log(err));
-      } catch (error) {
-        alert("Something went wrong. Please try again later.");
-        console.log(error)
+      if(name=="" || email=="" || pass==""){
+        alert("Please fill all data")
+        return
       }
-    }
-  </script>
-  
-  
+      let userObj = {
+        name,
+        email,
+        pass
+      }
 
-  
+      fetch(
+        "https://dexterserver.onrender.com/user/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userObj),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.status);
+          alert("SignUP successfull")
+          window.location.href = "./index.html"
+        })
+        .catch((err) => console.log(err));
+      })
+
+
+</script>
