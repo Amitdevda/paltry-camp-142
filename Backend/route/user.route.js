@@ -10,9 +10,6 @@ user_route.use(cookieParser())
 user_route.use(express.json());
 const cors = require("cors")
 
-
-
-
 user_route.post("/signup", async (req, res) => {
     const { name, email, pass } = req.body
     try {

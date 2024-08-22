@@ -80,7 +80,7 @@
       }
 
       fetch(
-        "https://dexterserver.onrender.com/user/signup",
+        "https://dexter-backend-vkgv.onrender.com/user/signup",
         {
           method: "POST",
           headers: {
@@ -88,7 +88,7 @@
           },
           body: JSON.stringify(userObj),
         }
-      )
+      ) 
         .then((res) => res.json())
         .then((res) => {
           console.log(res.status);

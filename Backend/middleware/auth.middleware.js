@@ -20,7 +20,6 @@ const authenticate = async (req, res, next) => {
     if (blocked.length > 0) {
       res.end("Your Logged out, Please login again")
     }
-
     jwt.verify(token, "imran", async (err, decoded) => {
       if (decoded) {
         next()
@@ -33,7 +32,6 @@ const authenticate = async (req, res, next) => {
   else {
     res.send({ "msg": "Please login first" })
   }
-
 }
 
 module.exports = {

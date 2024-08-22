@@ -1,96 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href= "./css/login.css" rel="stylesheet">
+    <link href="./css/login.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <script src="https://kit.fontawesome.com/b471923b50.js" crossorigin="anonymous"></script>
+
+
 <body>
-    <div class="container">     
-        <!-- Container divided into 2 parts - Left and Right -->
 
-        <!-- Left Part start-->
-        <div class="container__leftPart">   
+    <div>
 
-            <!-- Navbar containing company logo and sign-up link -->
-            <div class="container__navbar">
-                <a href="./index.html"><img id="logo" src="./images/Dexternew_logo.png"></a>
-                <div><p>Don't have an account? <a href="./signup.html">Sign Up</a></p></div>    
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a> -->
+                        <a href="https://dexter-backend-vkgv.onrender.com/auth/google" class="social"><i
+                                class="fab fa-google-plus-g"></i></a>
+                        <!-- <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
+                    </div>
+                    <span>or use your email for registration</span>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <a href="#"></a>
+                    <button style="cursor: pointer;">Sign Up</button>
+                </form>
             </div>
-
-            <!-- Login card start-->
-            <div class="container__loginCard">
-                <h2>Log In</h2>
-                <label for="password">E-mail:</label>
-                <input type="email" placeholder="Enter email" id="email">
-                 <label for="password">Password:</label>
-                <input type="password" placeholder="Enter password" id="password">
-                <a id="fbtn" href="#">Forgot password?</a><br>
-                <button id="login-btn" class="loginCard__googleBtn">Log-In</button>
+            <div class="form-container sign-in-container">
+                <form action="#">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a> -->
+                        <a href="https://dexter-backend-vkgv.onrender.com/auth/google" class="social"><i
+                                class="fab fa-google-plus-g"></i></a>
+                        <!-- <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
+                    </div>
+                    <span>or use your account</span>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <a href="#"></a>
+                    <button style="cursor: pointer;">Sign In</button>
+                </form>
             </div>
-            <!-- Login card end-->
-
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn" style="cursor: pointer;" >Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="ghost" id="signUp" style="cursor: pointer;">Sign Up</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Left Part end-->
 
-        <!-- Right Part start-->
-        <div class="container__rightPart">
-            <h2>No need to keep share do it live in a tab</h2>
-            <p>Install the browser extension<br> and edit from <br>anywhere.</p>
-            <img src="https://clockify.me/assets/ui-icons/ext-chrome.svg" class="rightPart__appstore"><br>   
-            <div class="rightPart__learnMore"><a href="#">Learn More</a></div>
-        </div>
-        <!-- Right Part end-->
 
     </div>
 
 </body>
-</html>
-<script>
-  
-      const Loginbtn = document.getElementById("login-btn");
-Loginbtn.addEventListener("click",LoginFunction);
 
-//-------------------------FOR LOGIN--------------------------//
-async function LoginFunction(event){
-    try {
-        event.preventDefault();
-        let email = document.querySelector("#email").value
-        let pass = document.querySelector("#password").value
- 
-    let obj  = {
-      email,pass
-    }
-        console.log(obj);
-        let login_request = await fetch("https://dexterserver.onrender.com/user/login",{
-            method : "POST",
-            body : JSON.stringify(obj),
-            headers : {
-                "Content-Type": "application/json", 
-            },
-        })
-        .then((res) => res.json())
-        .then((res) => {
-            console.log(res)
-            if(res.msg=="Please signup first"){
-            alert(res.msg)
-             location.href= "./signup.html"
-            }else if(res.msg=="Login successful"){
-                         alert(res.msg)
-                         location.href= "./dexter(single).html"
-            }else if(res.msg=="Wrong password"){
-              alert(res.msg)
-            }           
-        })
-        
-    } catch (error) {
-		console.log(error.msg);
-        alert("error in login check");
-    }
-}
+</html>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+
+
+    document.querySelector('.sign-up-container form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.querySelector('.sign-up-container input[type="text"]').value;
+        const email = document.querySelector('.sign-up-container input[type="email"]').value;
+        const password = document.querySelector('.sign-up-container input[type="password"]').value;
+
+        const response = await fetch('https://dexter-backend-vkgv.onrender.com/user/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, pass: password })
+        });
+
+        const data = await response.json();
+
+        if (data.msg === "signup successfull") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Signup Successful!',
+                text: 'You have successfully signed up.',
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong during signup!',
+            });
+        }
+    });
+
+    
+    document.querySelector('.sign-in-container form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.querySelector('.sign-in-container input[type="email"]').value;
+        const password = document.querySelector('.sign-in-container input[type="password"]').value;
+
+        const response = await fetch('https://dexter-backend-vkgv.onrender.com/user/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, pass: password })
+        });
+
+        const data = await response.json();
+
+        if (data.msg === "Login successful") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful!',
+                text: 'Welcome back!',
+            });
+            // Redirect to another page if needed
+            location.href="dexter(single).html"
+        } else if (data.msg === "Wrong password") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Incorrect Password',
+                text: 'Please check your password and try again.',
+            });
+        } else if (data.msg === "Please signup first") {
+            Swal.fire({
+                icon: 'info',
+                title: 'Signup Required',
+                text: 'Please sign up before logging in.',
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: 'Something went wrong during login!',
+            });
+        }
+    });
 
 </script>

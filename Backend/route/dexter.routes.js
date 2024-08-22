@@ -17,3 +17,7 @@ dex_rout.get("/lab",(req,res)=>{
 module.exports={
     dex_rout
 }
+
+
+
+

@@ -7,403 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dexter Lab</title>
   <script src="https://kit.fontawesome.com/b471923b50.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/single.css">
 </head>
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-  }
-
-  body {
-    background: #454545;
-    color: #fff;
-  }
-
-  #a {
-    color: rgb(255, 196, 0);
-  }
-
-  #b {
-    color: rgb(101, 219, 255);
-  }
-
-  #c {
-    color: yellow;
-  }
-
-  .left {
-    flex-basis: 40%;
-  }
-
-  .right {
-    flex-basis: 60%;
-  }
-
-  .x {
-    width: 100%;
-    height: 100vh;
-    padding: 2px;
-    display: flex;
-  }
-
-  .x>div>textarea {
-    width: 100%;
-    height: 28%;
-    background: #1f1f1f;
-    color: #fff;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  .x>div>iframe {
-    width: 100%;
-    height: 93%;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-
-  /*==================== layout1=============== */
-
-  #content.cont {
-    width: 100%;
-    height: 100vh;
-    padding: 2px;
-    display: flex;
-  }
-
-  #content.cont>div>textarea {
-    width: 100%;
-    height: 28%;
-    background: #1f1f1f;
-    color: #fff;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.cont>div>iframe {
-    width: 100%;
-    height: 93%;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  /* =========================layout2==================== */
-
-  #content.a>.left {
-    display: flex;
-  }
-
-  #content.a>div>textarea {
-    width: 50%;
-    height: 40dvh;
-    background: #1f1f1f;
-    color: #fff;
-    margin-top: 3svh;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.a>div>iframe {
-    width: 100%;
-    height: 50svh;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  #content.a>div {
-    position: relative;
-  }
-
-  #content.a>div>#c {
-    position: absolute;
-    left: 165vh;
-    background-color: #1f1f1f;
-  }
-
-  #content.a>div>#b {
-    position: absolute;
-    left: 94vh;
-    background-color: #1f1f1f;
-
-  }
-
-  #content.a>div>#a {
-    position: absolute;
-    left: 25vh;
-    background-color: #1f1f1f;
-
-  }
-
-  /* ===========================layout3================= */
-
-  #content.b {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-
-  #content.b>div>textarea {
-    width: 100%;
-    height: 30dvh;
-    background: #1f1f1f;
-    color: #fff;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.b>div>iframe {
-    width: 100%;
-    height: 100dvh;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  /* ===========================layout4================== */
-
-  #content.d {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  #content.d>.left {
-    display: flex;
-    ;
-  }
-
-  #content.d>div>textarea {
-    width: 50%;
-    height: 40dvh;
-    background: #1f1f1f;
-    color: #fff;
-    margin-top: 3svh;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.d>div>iframe {
-    width: 100%;
-    height: 50svh;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  #content.d>div {
-    position: relative;
-  }
-
-  #content.d>div>#c {
-    position: absolute;
-    left: 165vh;
-    background-color: #1f1f1f;
-  }
-
-  #content.d>div>#b {
-    position: absolute;
-    left: 94vh;
-    background-color: #1f1f1f;
-
-  }
-
-  #content.d>div>#a {
-    position: absolute;
-    left: 25vh;
-    background-color: #1f1f1f;
-
-  }
-
-
-  label i {
-    margin-right: 10px;
-    margin-left: 10px;
-
-  }
-
-  label {
-    display: flex;
-    align-items: center;
-    background: #000;
-    height: 30px;
-  }
-
-  /*---------------------- editor.css ---------------*/
-
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-  :root {
-    --dark-color-a: #1e1e1e;
-    --dark-color-b: #252526;
-    --dark-color-c: #3c3c3c;
-    --light-color-a: #ffffff;
-    --light-color-b: #dbdbdb;
-    --main-color: #007acc;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  body {
-    background: var(--dark-color-a);
-  }
-
-  #nav {
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 8px 20px;
-    background: #000000;
-    z-index: 1000;
-    height: 55px;
-    border-bottom: 0.3px solid white;
-    color: #dbdbdb;
-  }
-
-  #nav_logo {
-    width: 30%;
-  }
-
-  #logo img {
-    width: 20px;
-  }
-
-  #nav_container {
-    width: 70%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #list {
-    width: 30%;
-  }
-
-  #list ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-  }
-
-  #list ul li {
-    font-size: 13px;
-    color: var(--light-color-a);
-    cursor: pointer;
-  }
-
-
-  /* ========\ view dropdown /========== */
-
-  .logbtn {
-    background: var(--dark-color-c);
-    font-weight: 600;
-    color: var(--light-color-b);
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 8px 15px;
-    font-size: 15px;
-    margin: 15px;
-  }
-
-  #col {
-    background-color: crimson;
-  }
-
-  .logbtn:hover,
-  #col:hover {
-    background-color: var(--light-color-b);
-    color: var(--dark-color-a);
-    transition: all 0.5s ease-in-out;
-  }
-
-  .dropbtn {
-    background: var(--dark-color-c);
-    font-weight: 600;
-    color: var(--light-color-b);
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* border: 1px solid #dfdfdf; */
-    padding: 8px 15px;
-  }
-
-  .dropbtn>i {
-    margin-left: 10px;
-  }
-
-  .dropdown {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    /* padding: 1px 25px; */
-  }
-
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0%;
-    background: #000000;
-    color: #dbdbdb;
-    min-width: 160px;
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    color: #dbdbdb;
-    border-radius: 4px;
-  }
-
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {
-    background: var(--dark-color-c);
-    color: var(--light-color-b);
-  }
-
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-  #log {
-    width: 150px;
-    margin-left: -15px;
-  }
-</style>
-
 <body>
-  <!------------------------ Navbar ----------------------------------->
   <section>
     <nav id="nav">
       <div id="nav_logo">
@@ -423,12 +30,16 @@
           <button class="logbtn" onclick="down()">Download</button>
           <button class="logbtn" onclick="bye()">Logout</button>
           <button id="col" class="logbtn" onclick="chle()">Create Room</button>
+          <!-- Spinner -->
+<div id="spinner" class="spinner hidden">
+  <div class="loader"></div>
+</div>
+
         </div>
       </div>
     </nav>
 
   </section>
-  <!----------------------------------- Main body --------------------------------------->
   <section id="content" class="x">
     <div class="left">
       <label id="a"><i class="fa-brands fa-html5"></i>HTML </label>
@@ -442,10 +53,8 @@
       <hr>
     </div>
     <div class="right">
-
       <label><i class="fa-duotone fa-play"></i> Output</label>
       <iframe id="output"></iframe>
-
     </div>
   </section>
 </body>
@@ -468,9 +77,6 @@
   let layout3 = document.getElementById('nav_layout-3')
   let layout4 = document.getElementById('nav_layout-4')
   let sec = document.getElementById('content')
-
-
-
   layout1.addEventListener('click', () => {
     sec.classList.remove('a')
     sec.classList.remove('b')
@@ -485,7 +91,6 @@
     sec.classList.remove('d')
     sec.classList.add('a')
   })
-
   layout3.addEventListener('click', () => {
     sec.classList.remove('a')
     sec.classList.remove('cont')
@@ -519,20 +124,44 @@
     }
   }
 
+  // async function chle() {
+  //   const response = await fetch("https://dexter-backend-vkgv.onrender.com/room/c_room").then(res =>
+  //     res.json()).then(res => {
+  //       if (res.msg == "ok") {
+  //         window.location.href = "createroom.html"
+  //       }
+  //       else if (res.msg == "Please login first") {
+  //         alert("Please login first")
+  //         return
+  //       }
+  //     })
+  // }
 
   async function chle() {
-    const response = await fetch("https://dexterserver.onrender.com/room/c_room").then(res =>
-      res.json()).then(res => {
-        if (res.msg == "ok") {
-          window.location.href = "createroom.html"
-        }
-        else if (res.msg == "Please login first") {
-          alert("Please login first")
-          return
-        }
-      })
-  }
+  // Show the spinner
+  document.getElementById('spinner').classList.remove('hidden');
 
+  try {
+    const response = await fetch("https://dexter-backend-vkgv.onrender.com/room/c_room");
+    const res = await response.json();
+
+    if (res.msg === "ok") {
+      window.location.href = "createroom.html";
+    } else if (res.msg === "Please login first") {
+      alert("Please login first");
+      // Hide the spinner if there's an error
+      document.getElementById('spinner').classList.add('hidden');
+      return;
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    // Hide the spinner in case of error
+    document.getElementById('spinner').classList.add('hidden');
+  }
+}
+
+
+  
   async function bye() {
     // fetch(`https://dexter-gn6a.onrender.com/usr/logout`).then(res => res.json()).then(res => {
     //   if (res.msg == "You are logged out") {

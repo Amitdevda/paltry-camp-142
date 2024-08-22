@@ -7,1118 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dexter Lab</title>
   <!-- <link rel="stylesheet" href="dexter.css"> -->
-  <!-- <link rel="stylesheet" href="chat.css"> -->
+  <link rel="stylesheet" href="./css/dexterlab.css">
   <script src="https://kit.fontawesome.com/b471923b50.js" crossorigin="anonymous"></script>
 </head>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-  }
-
-  body {
-    background: #454545;
-    color: #fff;
-  }
-
-  #a {
-    color: rgb(255, 196, 0);
-  }
-
-  #b {
-    color: rgb(101, 219, 255);
-  }
-
-  #c {
-    color: yellow;
-  }
-
-  /* .left,.right{
-    flex-basis: 50%; 
-    padding: 2px;
-} */
-  .left {
-    flex-basis: 40%;
-  }
-
-  .right {
-    flex-basis: 60%;
-  }
-
-  .x {
-    width: 100%;
-    height: 100vh;
-    padding: 2px;
-    display: flex;
-  }
-
-  .x>div>textarea {
-    width: 100%;
-    height: 28%;
-    background: #1f1f1f;
-    color: #fff;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  .x>div>iframe {
-    width: 100%;
-    height: 93%;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-
-  /*==================== layout1=============== */
-
-  #content.cont {
-    width: 100%;
-    height: 100vh;
-    padding: 2px;
-    display: flex;
-  }
-
-  #content.cont>div>textarea {
-    width: 100%;
-    height: 28%;
-    background: #1f1f1f;
-    color: #fff;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.cont>div>iframe {
-    width: 100%;
-    height: 93%;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  /* =========================layout2==================== */
-
-  #content.a>.left {
-    display: flex;
-  }
-
-  #content.a>div>textarea {
-    width: 50%;
-    height: 40dvh;
-    background: #1f1f1f;
-    color: #fff;
-    margin-top: 3svh;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.a>div>iframe {
-    width: 100%;
-    height: 50svh;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  #content.a>div {
-    position: relative;
-  }
-
-  #content.a>div>#c {
-    position: absolute;
-    left: 165vh;
-    background-color: #1f1f1f;
-  }
-
-  #content.a>div>#b {
-    position: absolute;
-    left: 94vh;
-    background-color: #1f1f1f;
-
-  }
-
-  #content.a>div>#a {
-    position: absolute;
-    left: 25vh;
-    background-color: #1f1f1f;
-
-  }
-
-  /* ===========================layout3================= */
-
-  #content.b {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-
-  #content.b>div>textarea {
-    width: 100%;
-    height: 30dvh;
-    background: #1f1f1f;
-    color: #fff;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.b>div>iframe {
-    width: 100%;
-    height: 100dvh;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  /* ===========================layout4================== */
-
-  #content.d {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  #content.d>.left {
-    display: flex;
-    ;
-  }
-
-  #content.d>div>textarea {
-    width: 50%;
-    height: 40dvh;
-    background: #1f1f1f;
-    color: #fff;
-    margin-top: 3svh;
-    padding: 10px 20px;
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-  }
-
-  #content.d>div>iframe {
-    width: 100%;
-    height: 50svh;
-    background: #fff;
-    border: 0;
-    outline: 0;
-  }
-
-  #content.d>div {
-    position: relative;
-  }
-
-  #content.d>div>#c {
-    position: absolute;
-    left: 165vh;
-    background-color: #1f1f1f;
-  }
-
-  #content.d>div>#b {
-    position: absolute;
-    left: 94vh;
-    background-color: #1f1f1f;
-
-  }
-
-  #content.d>div>#a {
-    position: absolute;
-    left: 25vh;
-    background-color: #1f1f1f;
-
-  }
-
-
-  label i {
-    margin-right: 10px;
-    margin-left: 10px;
-
-  }
-
-  label {
-    display: flex;
-    align-items: center;
-    background: #000;
-    height: 30px;
-  }
-
-  /*---------------------- editor.css ---------------*/
-
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-  :root {
-    --dark-color-a: #1e1e1e;
-    --dark-color-b: #252526;
-    --dark-color-c: #3c3c3c;
-    --light-color-a: #ffffff;
-    --light-color-b: #dbdbdb;
-    --main-color: #007acc;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  /* ::-webkit-scrollbar {
-  width: 0px;
-} */
-  body {
-    background: var(--dark-color-a);
-  }
-
-  /* #nav{
-  border: 1px solid crimson;
-  display: flex;
-} */
-
-  #nav {
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 8px 20px;
-    background: #000000;
-    z-index: 1000;
-    height: 55px;
-    border-bottom: 0.3px solid white;
-    color: #dbdbdb;
-  }
-
-  #nav_logo {
-    width: 30%;
-  }
-
-  #logo img {
-    width: 20px;
-  }
-
-  #nav_container {
-    width: 70%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #list {
-    width: 30%;
-  }
-
-  #list ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-  }
-
-  #list ul li {
-    font-size: 13px;
-    color: var(--light-color-a);
-    cursor: pointer;
-  }
-
-
-  /* ========\ view dropdown /========== */
-
-  .logbtn {
-    background: var(--dark-color-c);
-    font-weight: 600;
-    color: var(--light-color-b);
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 8px 15px;
-    font-size: 15px;
-    margin: 15px;
-  }
-
-  #col {
-    background: var(--main-color);
-  }
-
-  .logbtn:hover,
-  #col:hover {
-    background-color: var(--light-color-b);
-    color: var(--dark-color-a);
-    transition: all 0.5s ease-in-out;
-  }
-
-  .dropbtn {
-    background: var(--dark-color-c);
-    font-weight: 600;
-    color: var(--light-color-b);
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* border: 1px solid #dfdfdf; */
-    padding: 8px 15px;
-  }
-
-  .dropbtn>i {
-    margin-left: 10px;
-  }
-
-  .dropdown {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    /* padding: 1px 25px; */
-  }
-
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0%;
-    background: #000000;
-    color: #dbdbdb;
-    min-width: 160px;
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    color: #dbdbdb;
-    border-radius: 4px;
-  }
-
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {
-    background: var(--dark-color-c);
-    color: var(--light-color-b);
-  }
-
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-
-  /* ====================sidebar============================= */
-
-  .sidebar {
-    position: fixed;
-    right: 0;
-    /* top: 40px; */
-    height: auto;
-    width: 50dvh;
-    transform: translateX(50dvh);
-    background: #000;
-    padding: 6px 14px;
-    z-index: 99;
-    /* display: none; */
-    /* opacity: 0; */
-    transition: all 0.5s ease;
-  }
-
-  .sidebar.open {
-    /* width: 250px; */
-    transform: translateX(0);
-    opacity: 1;
-    /* display: block; */
-  }
-
-  .sidebar .logo-details {
-    /* height: 65px; */
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .sidebar .logo-details .icon {
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-
-  .sidebar .logo-details .logo_name {
-    color: var(--light-color-a);
-    font-size: 20px;
-    font-weight: 600;
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-
-  .sidebar.open .logo-details .icon,
-  .sidebar.open .logo-details .logo_name {
-    opacity: 1;
-  }
-
-  .sidebar .logo-details #btn {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    font-size: 22px;
-    transition: all 0.4s ease;
-    font-size: 23px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.5s ease;
-  }
-
-  .sidebar.open .logo-details #btn {
-    text-align: right;
-  }
-
-  /* #btn{
-  display: none;
-} */
-
-  .sidebar i {
-    color: var(--light-color-a);
-    height: 60px;
-    min-width: 50px;
-    font-size: 28px;
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .sidebar .nav-list {
-    margin-top: 20px;
-    height: 100%;
-  }
-
-  .sidebar li {
-    position: relative;
-    margin: 8px 0;
-    list-style: none;
-    width: 100%;
-  }
-
-  .sidebar li .tooltip {
-    position: absolute;
-    top: -20px;
-    left: calc(100% + 15px);
-    z-index: 3;
-    background: var(--light-color-a);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: 400;
-    opacity: 0;
-    white-space: nowrap;
-    pointer-events: none;
-    transition: 0s;
-  }
-
-  .sidebar li:hover .tooltip {
-    opacity: 1;
-    pointer-events: auto;
-    transition: all 0.4s ease;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .sidebar.open li .tooltip {
-    display: none;
-  }
-
-  .sidebar input {
-    font-size: 15px;
-    color: var(--light-color-a);
-    font-weight: 400;
-    outline: none;
-    height: 50px;
-    width: 100%;
-    width: 50px;
-    border: none;
-    border-radius: 12px;
-    transition: all 0.5s ease;
-    background: var(--dark-color-c);
-  }
-
-  .sidebar.open input {
-    padding: 0 20px 0 50px;
-    width: 100%;
-  }
-
-  .sidebar .bx-search {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    font-size: 22px;
-    background: var(--dark-color-c);
-    color: var(--light-color-a);
-  }
-
-  .sidebar.open .bx-search:hover {
-    background: var(--dark-color-c);
-    color: var(--light-color-a);
-  }
-
-  .sidebar .bx-search:hover {
-    background: var(--light-color-a);
-    color: var(--dark-color-a);
-  }
-
-  .sidebar li a {
-    display: flex;
-    height: 70px;
-    width: 100%;
-    border-radius: 12px;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.4s ease;
-    background: var(--dark-color-a);
-  }
-
-  .sidebar li a:hover {
-    background: var(--light-color-a);
-  }
-
-  .sidebar li a .links_name {
-    color: var(--light-color-a);
-    font-size: 15px;
-    font-weight: 400;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.4s;
-  }
-
-  .sidebar.open li a .links_name {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .sidebar li a:hover .links_name,
-  .sidebar li a:hover i {
-    transition: all 0.5s ease;
-    color: var(--dark-color-a);
-  }
-
-  .sidebar li i {
-    height: 50px;
-    line-height: 50px;
-    font-size: 18px;
-    border-radius: 12px;
-  }
-
-  .sidebar li.profile {
-    position: fixed;
-    height: 60px;
-    width: 78px;
-    left: 0;
-    bottom: -8px;
-    padding: 10px 14px;
-    background: var(--dark-color-b);
-    transition: all 0.5s ease;
-    overflow: hidden;
-  }
-
-  .sidebar.open li.profile {
-    width: 250px;
-  }
-
-  .sidebar li .profile-details {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-  }
-
-  .sidebar li img {
-    height: 45px;
-    width: 45px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-right: 10px;
-  }
-
-  .sidebar li.profile .name,
-  .sidebar li.profile .job {
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--light-color-a);
-    white-space: nowrap;
-  }
-
-  .sidebar li.profile .job {
-    font-size: 10px;
-  }
-
-  .sidebar .profile #log_out {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    background: var(--dark-color-b);
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 0px;
-    transition: all 0.5s ease;
-  }
-
-  .sidebar.open .profile #log_out {
-    width: 50px;
-    background: none;
-  }
-
-  .home-section {
-    position: relative;
-    background: var(--dark-color-c);
-    min-height: 100vh;
-    top: 0;
-    left: 78px;
-    width: calc(100% - 78px);
-    transition: all 0.5s ease;
-    z-index: 2;
-    height: 100vh;
-    display: flex;
-  }
-
-  .sidebar.open~.home-section {
-    left: 250px;
-    width: calc(100% - 250px);
-  }
-
-  /* !================================================= */
-  .home-section .text {
-    display: inline-block;
-    color: #252526;
-    font-size: 25px;
-    font-weight: 500;
-    /* margin: 0 ; */
-    padding: 50px 0;
-  }
-
-  .text {
-    background: #E7E7E7;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 100vh;
-    margin: 3px;
-
-  }
-
-  .text textarea {
-    border: 30px solid green;
-    resize: none;
-    width: 100%;
-    height: 34%;
-    font-size: 1.4rem;
-    padding: 10px;
-    resize: vertical;
-    overflow-y: scroll;
-  }
-
-  .text textarea:focus {
-    outline: none;
-  }
-
-  .iframe-container {
-    background: white;
-    width: 50%;
-    height: 100vh;
-    margin: 3px;
-  }
-
-  #viewer {
-    width: 100%;
-    height: 100%;
-    /* padding: 50px 0; */
-  }
-
-  .split {
-    width: 100%;
-    height: 100%;
-  }
-
-  .gutter {
-    cursor: e-resize;
-    height: 100%;
-    background: grey;
-  }
-
-  .gutter.gutter-horizontal {
-    cursor: ew-resize;
-  }
-
-  .CodeMirror {
-    font-size: 16px;
-    resize: vertical;
-    overflow-y: scroll;
-  }
-
-  @media (max-width: 420px) {
-    .sidebar li .tooltip {
-      display: none;
-    }
-  }
-
-
-
-  .chating {
-    position: fixed;
-    right: 10svh;
-    bottom: 12svh;
-    display: none;
-  }
-
-  .chatbox__support {
-    background: #f9f9f9;
-    /* height: 500px; */
-    width: 350px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-
-  /* HEADER */
-  .chatbox__header {
-    background: gray;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Messages */
-  .chatbox__messages {
-    padding: 0 20px;
-    border: 11px solid rgb(255, 255, 255);
-  }
-
-  /* FOOTER */
-  .chatbox__footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 10px;
-    background: gray;
-    box-shadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    margin-top: 53dvh;
-  }
-
-  .chatbox__footer input {
-    border: none;
-    padding: 10px 10px;
-    border-radius: 30px;
-    text-align: center;
-  }
-
-  .send {
-    background-color: black;
-    color: white;
-    padding: 10px 25px 10px 25px;
-    font-size: 16px;
-    border-radius: 20px;
-  }
-
-  .chatbox__button button,
-  .chatbox__button button:focus,
-  .chatbox__button button:visited {
-    position: fixed;
-    bottom: 6px;
-    right: 20px;
-    width: 140px;
-    height: 40px;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: 500;
-    background: var(--main-color);
-    color: #fff;
-    border: none;
-    outline: none;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-  }
-
-  /* .chatbox{
-        border: 1px solid red;
-        height: 500px;
-        margin-bottom: 150px;
-        position: fixed;
-        top:100px;
-        right: 30px;
-    } */
-  .chatbox__header {
-    height: 50px;
-    width: 352px;
-    margin-bottom: 150px;
-    position: fixed;
-    top: 112px;
-    right: 65px;
-  }
-
-  .chatbox__footer {
-    margin-bottom: 150px;
-    position: fixed;
-    top: 170px;
-    right: 65px;
-    width: 352px;
-  }
-
-  .chatbox__support {
-    /* border: 1px solid red; */
-    position: fixed;
-    padding-bottom: 100px;
-    padding-top: 20px;
-    top: 140px;
-    right: 65px;
-    width: 352px;
-    height: 360px;
-    border-radius: 0.1px;
-    overflow-y: scroll;
-  }
-
-  .messages__item {
-    margin-top: 10px;
-    background: #E0E0E0;
-    padding: 8px 12px;
-    max-width: 70%;
-  }
-
-  .messages__item--visitor,
-  .messages__item--typing {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    background: #a2ffa7;
-    color: white;
-  }
-
-  .messages__item--operator {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    margin-left: 7rem;
-    background: #a2ffa7;
-    color: white;
-  }
-
-
-  #sendjs {
-    width: 80px;
-    margin-left: 304px;
-    cursor: pointer;
-  }
-
-  #sendhtml {
-    width: 80px;
-    margin-left: 350px;
-    cursor: pointer;
-  }
-
-  #sendcss {
-    width: 80px;
-    cursor: pointer;
-    margin-left: 355px;
-  }
-
-  #chate {
-    padding: 15px;
-    border: 1px solid rgb(101, 219, 255);
-    ;
-  }
-
-  #log {
-    width: 150px;
-    margin-left: -15px;
-  }
-
-  .logo-details {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .romid {
-    margin-top: 5px;
-    padding: 5px;
-    padding-bottom: 2px;
-    /* border: 1px solid crimson; */
-    background-color: var(--dark-color-a);
-    border-radius: 10px;
-    width: 100%;
-  }
-
-  #romid {
-    width: 100%;
-  }
-
-  /* =================================Sweetmsg ==================*/
-
-  .popup {
-    display: none;
-    /* Hide the popup by default */
-    position: fixed;
-    /* Keep the popup in the same position even if the user scrolls */
-    z-index: 1;
-    /* Make the popup appear on top of other elements */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent black background */
-  }
-
-  .popup-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #28a5f8fd;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    position: absolute;
-    top: 14%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .popup-content p {
-    color: crimson;
-  }
-
-  /* small screen css */
-
-  .dropdownm {
-    display: none;
-  }
-
-  .dropbtnm {
-    background-color: var(--dark-color-c);
-    font-weight: 600;
-    color: var(--light-color-b);
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    min-width: 160px;
-    top: 3rem;
-  }
-
-  .dropdown-menu2 {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    background-color: #ffffff;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  }
-
-  .dropdownm:hover .dropdown-menu {
-    display: block;
-  }
-
-  .dropbtnm:hover .dropdown-menu2 {
-    display: block;
-  }
-
-  #nav_layout1,
-  #nav_layout2,
-  #nav_layout3,
-  #nav_layout4 {
-    color: #333333;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-
-  #nav_layout1:hover,
-  #nav_layout2:hover,
-  #nav_layout3:hover,
-  #nav_layout4:hover {
-    background-color: #f2f2f2;
-  }
-
-  .logbtnn {
-    display: block;
-    background-color: #ffffff;
-    color: #333333;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
-  }
-
-  .logbtnn:hover {
-    background-color: #f2f2f2;
-  }
-
-  #coll {
-    display: block;
-    background-color: #ffffff;
-    color: #333333;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
-    text-decoration: none;
-  }
-
-  #coll:hover {
-    background-color: #f2f2f2;
-  }
-  
-  #chatsend{
-     padding: 10px;
-     width: 30%;
-     margin: auto;
-     border-radius: 10px;
-     background-color: var(--main-color);
-     color: #fff;
-     font-size: 16px;
-     font-weight: 500;
-  }
-
-
-  @media screen and (max-width : 866px) {
-    .dropdownm {
-      display: block;
-      margin-left: 50%
-    }
-    .dropdown{
-      display: none;
-    }
-    .logbtn{
-      display: none;
-    }
-  }
-</style>
 
 <body>
   <!------------------------ Navbar ----------------------------------->
@@ -1129,7 +20,6 @@
       </div>
       <div id="nav_container">
         <!----------------------------- Menu for small screen  -->
-
         <div class="dropdownm">
           <div class="dropbtnm" id="ok">Menu <i class="fa-solid fa-caret-down"></i></div>
           <div class="dropdown-menu">
@@ -1140,11 +30,10 @@
                 <a id="nav_layout3">Layout 3</a>
                 <a id="nav_layout4">Layout 4</a>
               </div>
-
             </div> -->
             <button class="logbtnn" onclick="down()">Download</button>
             <button class="logbtnn" onclick="back()">Logout</button>
-            <button class="logbtnn"  id="coll" onclick="piche()">Leave Room</button>
+            <button class="logbtnn" id="coll" onclick="piche()">Leave Room</button>
           </div>
         </div>
 
@@ -1161,7 +50,7 @@
         <div>
           <button class="logbtn" onclick="down()">Download</button>
           <button class="logbtn" onclick="back()">Logout</button>
-          <button class="logbtn"  id="col" onclick="piche()">Leave Room</button>
+          <button class="logbtn" id="col" onclick="piche()">Leave Room</button>
         </div>
         <i class="fa-solid fa-bars" id="btn" style="font-size: 40px;margin-left: 50px;"></i>
       </div>
@@ -1178,7 +67,8 @@
               <a href="#">
                 <i class="fa-solid fa-user"></i>
                 <div>
-                  <p class="links_name" id="currentUser" style="font-size: 16px; font-weight: 500;">User :<span id="shownaam"></span></p>
+                  <p class="links_name" id="currentUser" style="font-size: 16px; font-weight: 500;">User :<span
+                      id="shownaam"></span></p>
                 </div>
               </a>
             </li>
@@ -1238,39 +128,30 @@
   <div class="chatbox__button">
     <button onclick="khulja()">Chat here</button>
   </div>
-
-
 </body>
 
 </html>
-
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
   integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
   </script>
 
-
 <script>
-
   const piche = () => {
     const leaveRoom = confirm("Are you sur you want to leave room?");
-    if(leaveRoom){
-        window.location.href = "./dexter(single).html";
+    if (leaveRoom) {
+      window.location.href = "./dexter(single).html";
     }
   }
-
   let username = localStorage.getItem("name")
   let room = localStorage.getItem("roomid")
   let naam = localStorage.getItem("name")
   let roomName = document.getElementById("showroomid")
   let userList = document.getElementById("showname")
   let myname = document.getElementById("shownaam")
-  roomName.innerText= room;
-  myname.innerText= naam;
+  roomName.innerText = room;
+  myname.innerText = naam;
 
-
-  // const client = io("https://dexter-gn6a.onrender.com"", { transports: ["websocket"] })
-  const client = io("https://dexterserver.onrender.com/", { transports: ["websocket"] })
-
+  const client = io("https://dexter-backend-vkgv.onrender.com/", { transports: ["websocket"] })
 
   //================Edited by me==============
   client.emit("join", { username, room })
@@ -1289,21 +170,21 @@
   }
 
   function outputRoomUsers(users) {
-    userList.innerHTML = '';
+    userList.innerHTML = ''; // Clear the existing list
     const userItems = users.map(user => {
-      return `
-    <li>
-      <a href="#">
-        <i class="fa-solid fa-user"></i>
-        <div>
-          <span class="links_name" id="currentUser">User :  ${user.username} </span>
-          </div>
+        return `
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-user"></i>
+            <div>
+              <span class="links_name" id="currentUser">User: ${user.username}</span>
+            </div>
           </a>
-          </li>
-          `
+        </li>`;
     });
-    userList.innerHTML = userItems.join('');
-  }
+    userList.innerHTML = userItems.join(''); // Join the list items and set as innerHTML
+}
+
 
   function showPopup(data) {
     let roomid = localStorage.getItem("roomid")
@@ -1311,9 +192,9 @@
       const popup = document.getElementById('popup');
       popup.style.display = 'block';
       let person = document.getElementById('levname')
-      if(data.dis==1){
+      if (data.dis == 1) {
         person.innerText = `${data.users} joins the room`
-      }else{
+      } else {
         person.innerText = `${data.users} has leave the room`
       }
       setTimeout(function () {
@@ -1322,67 +203,39 @@
     }
   }
 
-
-  const chatForm = document.getElementById("chat-form")
-
-  chatForm.addEventListener("submit", (e) => {
-    e.preventDefault()
-    let name = localStorage.getItem("name")
-    let msg = e.target.elements.msg.value;
-
-    msg = msg.trim()
-
-    if (!msg) {
-      return false;
-    } else {
-      client.emit("chatMessage", ({ name, msg }));
-      
-    e.target.elements.msg.value = "";
-    e.target.elements.msg.focus();
-    }
-  })
-
-
   //========================= till-here============================
 
   let c = 0;
   client.on("fst", (data) => {
-    console.log(data)
+    console.log("data from html", data.room)
     let roomid = localStorage.getItem("roomid")
-    if (data.room == roomid) {
+    if (data.room === roomid) {
       let field = document.getElementById("htmlsec")
       field.value = data.textData;
       let event = new Event('keyup');
       field.dispatchEvent(event);
     }
-    else {
-      c++
-    }
   })
 
   client.on("fstcss", (data) => {
+    console.log("data from css", data.room)
     let roomid = localStorage.getItem("roomid")
-    if (data.room == roomid) {
+    if (data.room === roomid) {
       let fieldc = document.getElementById("csssec")
       fieldc.value = data.textDatac;
       let eventc = new Event('keyup');
       fieldc.dispatchEvent(eventc);
     }
-    else {
-      c++
-    }
   })
 
   client.on("fstjs", (data) => {
+    console.log("data from js", data.room)
     let roomid = localStorage.getItem("roomid")
-    if (data.room == roomid) {
+    if (data.room === roomid) {
       let field = document.getElementById("jssec")
       field.value = data.textData;
       let event = new Event('keyup');
       field.dispatchEvent(event);
-    }
-    else {
-      c++
     }
   })
 
@@ -1393,7 +246,6 @@
     timer = setTimeout(function () {
       let textData = data.value
       client.emit("html", { "textData": textData, "room": room })
-      // client.emit("html",textData)
     }, 100)
   })
 
@@ -1403,11 +255,10 @@
     clearTimeout(timerc);
     timerc = setTimeout(function () {
       let textDatac = datacss.value
-      // console.log(textDatac)
       client.emit("css", { "textDatac": textDatac, "room": room })
     }, 110)
   })
-
+ 
   let datajs = document.getElementById("jssec");
   let timer2;
   datajs.addEventListener("input", () => {
@@ -1418,21 +269,37 @@
     }, 100)
   })
 
+  const chatForm = document.getElementById("chat-form")
+
+  chatForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    let name = localStorage.getItem("name")
+    let msg = e.target.elements.msg.value;
+    msg = msg.trim()
+    if (!msg) {
+      return false;
+    } else {
+      client.emit("chatMessage", ({ name, msg, room }));
+      e.target.elements.msg.value = "";
+      e.target.elements.msg.focus();
+    }
+  })
 
   client.on("msgd", (data) => {
-    // console.log(data)
-    let d = document.createElement("div")
-    d.classList.add('messages__item','messages__item--visitor')
-    let p1 = document.createElement("p")
-    p1.style.fontSize = "10px"
-    let p = document.createElement("p")
-    p.style.color = "black"
-    p1.style.color = "black"
-    p1.style.marginBottom = "5px"
-    p1.append(data.name)
-    p.append(data.msg)
-    d.append(p1, p)
-    document.getElementById("append").append(d)
+    if (room == data.room) {
+      let d = document.createElement("div")
+      d.classList.add('messages__item', 'messages__item--visitor')
+      let p1 = document.createElement("p")
+      p1.style.fontSize = "10px"
+      let p = document.createElement("p")
+      p.style.color = "black"
+      p1.style.color = "black"
+      p1.style.marginBottom = "5px"
+      p1.append(data.name)
+      p.append(data.msg)
+      d.append(p1, p)
+      document.getElementById("append").append(d)
+    }
   })
 
   client.on("mymsg", (data) => {
@@ -1451,8 +318,6 @@
   })
 </script>
 
-<!-- <script src="dexter.js"></script> -->
-
 <script>
   function run() {
     let htmlcode = document.getElementById('htmlsec').value;
@@ -1465,11 +330,10 @@
 
   }
 
-  // ==========NAVbar=================
+  // ==========NAVbar============
 
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
-
   closeBtn.addEventListener("click", () => {
     sidebar.classList.toggle("open");
   });
@@ -1481,8 +345,6 @@
   let layout3 = document.getElementById('nav_layout-3')
   let layout4 = document.getElementById('nav_layout-4')
   let sec = document.getElementById('content')
-
-
 
   layout1.addEventListener('click', () => {
     sec.classList.remove('a')
@@ -1498,7 +360,6 @@
     sec.classList.remove('d')
     sec.classList.add('a')
   })
-
   layout3.addEventListener('click', () => {
     sec.classList.remove('a')
     sec.classList.remove('cont')
@@ -1527,8 +388,7 @@
     }
   }
 
-
-  //=============================Download the code===============================
+  // =========================Download the code===========================//
 
   function down() {
 
@@ -1548,8 +408,8 @@
   }
 
   async function back() {
-//         https://dexter-gn6a.onrender.com
-alert("You are logged out")
+    //         https://dexter-gn6a.onrender.com
+    alert("You are logged out")
     window.location.href = "./index.html";
 
     // fetch(`https://dexter-gn6a.onrender.com/usr/logout`).then(res => res.json()).then(res => {
@@ -1557,6 +417,6 @@ alert("You are logged out")
     //     alert("You are logged out")
     //   }
     // })
-}
+  }
 
 </script>
