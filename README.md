@@ -9,10 +9,11 @@ Project type => Collaborative Code editior <br>
 Collaborative / Solo => Collaborative of 4 member
 
 Members of Project group
-1. Amit devda              => fw22_0493  => Team Leader <br>
-2. Ayush kr Shanu          => fw22_0299  =>  Member <br>
-3. Ashwin                  => fw22_0820  =>  Member <br>
-4. Imran Ilai Sutar        => fw22_0109  =>  Member <br>
+1. Imran Ilai Sutar        => fw22_0109  =>  Team Leader <br>
+2. Amit devda              => fw22_0493  =>  Member <br>
+3. Ayush kr Shanu          => fw22_0299  =>  Member <br>
+4. Ashwin                  => fw22_0820  =>  Member <br>
+
 
 
 # For UI (FrontEnd)
